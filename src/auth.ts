@@ -48,8 +48,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         }
         return {
           id: user._id.toString(),
-          firstname: user.firstname,
-          lastname: user.lastname,
           email: user.email,
           role: user.role || "user",
         };

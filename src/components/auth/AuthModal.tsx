@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Mail, Lock, User, Eye, EyeOff } from 'lucide-react';
+import { X, Mail, Lock, User, Eye, EyeOff, Globe2 } from 'lucide-react';
+import { handleGoogleSignIn } from '@/actions/user';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -56,7 +57,18 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 {isLogin ? 'Sign in to continue' : 'Create your account'}
               </p>
             </div>
-
+            <form className=" w-full  " action={handleGoogleSignIn}>
+              <button
+                type="submit"
+                className="flex cursor-pointer w-64 mx-auto items-center justify-center gap-2 px-6 py-2 bg-zinc-100 border border-gray-300 
+                               rounded-xl hover:bg-gray-50 transition-colors mt-4"
+              >
+                <Globe2 className='text-black'/>
+                <span className="text-sm font-medium text-gray-600">
+                  Continue with Google
+                </span>
+              </button>
+            </form>
             {/* Form */}
             <form onSubmit={handleSubmit} className="p-6 space-y-4">
               {!isLogin && (
@@ -67,7 +79,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                     <input
                       type="text"
                       value={formData.name}
-                      onChange={(e) => setFormData({...formData, name: e.target.value})}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00C4CC] focus:border-transparent"
                       placeholder="Your name"
                     />
@@ -82,7 +94,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                   <input
                     type="email"
                     value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00C4CC] focus:border-transparent"
                     placeholder="your@email.com"
                   />
@@ -96,7 +108,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                   <input
                     type={showPassword ? 'text' : 'password'}
                     value={formData.password}
-                    onChange={(e) => setFormData({...formData, password: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                     className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00C4CC] focus:border-transparent"
                     placeholder="••••••••"
                   />
@@ -124,8 +136,8 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                   onClick={() => setIsLogin(!isLogin)}
                   className="text-[#00C4CC] text-sm hover:underline"
                 >
-                  {isLogin 
-                    ? "Don't have an account? Sign up" 
+                  {isLogin
+                    ? "Don't have an account? Sign up"
                     : "Already have an account? Sign in"
                   }
                 </button>
