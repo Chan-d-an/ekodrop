@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { Header } from './components/layout/Header';
-import { BottomNav } from './components/layout/BottomNav';
-import { HomeFeed } from './components/home/HomeFeed';
-import { AuthModal } from './components/auth/AuthModal';
+import { Header } from '@/components/layout/Header';
+import { BottomNav } from '@/components/layout/BottomNav';
+import { HomeFeed } from '@/components/home/HomeFeed';
+import { AuthModal } from '@/components/auth/AuthModal';
 import { motion } from 'framer-motion';
 
 export default function Home() {

@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Header } from '@/app/components/layout/Header';
-import { BottomNav } from '@/app/components/layout/BottomNav';
+import { Header } from '@/components/layout/Header';
+import { BottomNav } from '@/components/layout/BottomNav';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Zap, Users, Wifi, WifiOff, User, Ghost } from 'lucide-react';
 

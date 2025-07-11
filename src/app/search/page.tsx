@@ -1,7 +1,7 @@
 'use client';
 
-import { Header } from '@/app/components/layout/Header';
-import { BottomNav } from '@/app/components/layout/BottomNav';
+import { Header } from '@/components/layout/Header';
+import { BottomNav } from '@/components/layout/BottomNav';
 import { motion } from 'framer-motion';
 import { Search, TrendingUp, MapPin, Clock } from 'lucide-react';
 

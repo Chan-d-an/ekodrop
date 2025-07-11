@@ -1,8 +1,8 @@
 'use client';
 
-import { Header } from '@/app/components/layout/Header';
-import { BottomNav } from '@/app/components/layout/BottomNav';
-import { NewPost } from '@/app/components/drop/NewPost';
+import { Header } from '@/components/layout/Header';
+import { BottomNav } from '@/components/layout/BottomNav';
+import { NewPost } from '@/components/drop/NewPost';
 
 export default function DropPage() {
   return (
