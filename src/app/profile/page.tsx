@@ -32,13 +32,12 @@ export default function ProfilePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#F5FAFF] to-[#E8F4FD]">
-      <Header />
-      <main className="pt-16 pb-20 px-4">
+      
+      <main className="pt-4 pb-20 px-4">
         <div className="max-w-md mx-auto">
           {/* Profile Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+          <div
+            
             className="bg-white rounded-2xl p-6 shadow-lg mb-6"
           >
             <div className="flex items-center space-x-4">
@@ -63,20 +62,18 @@ export default function ProfilePage() {
                 </p>
               </div>
               
-              <motion.button
-                whileTap={{ scale: 0.9 }}
+              <button
+               
                 className="p-2 rounded-full hover:bg-gray-100 transition-colors"
               >
                 <Edit size={18} className="text-gray-600" />
-              </motion.button>
+              </button>
             </div>
-          </motion.div>
+          </div>
 
           {/* Stats Grid */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          <div
+            
             className="grid grid-cols-4 gap-4 mb-6"
           >
             <div className="bg-white rounded-lg p-3 text-center shadow-sm">
@@ -95,23 +92,19 @@ export default function ProfilePage() {
               <div className="text-2xl font-bold text-[#8E44AD]">15</div>
               <div className="text-xs text-gray-600">Chats</div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Recent Posts */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+          <div
+           
             className="mb-6"
           >
             <h2 className="text-lg font-semibold text-gray-800 mb-4">Recent Drops</h2>
             <div className="space-y-3">
               {recentPosts.map((post, index) => (
-                <motion.div
+                <div
                   key={post.id}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 + index * 0.1 }}
+                  
                   className="bg-white rounded-lg p-4 shadow-sm border border-gray-200"
                 >
                   <p className="text-gray-800 mb-3">{post.caption}</p>
@@ -131,16 +124,13 @@ export default function ProfilePage() {
                       <span>{post.timeLeft}</span>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
-
+          </div>
           {/* Upgrade CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
+          <div
+           
             className="bg-gradient-to-r from-[#00C4CC] to-[#8E44AD] rounded-2xl p-6 text-white"
           >
             <div className="flex items-center justify-between">
@@ -150,14 +140,14 @@ export default function ProfilePage() {
                   Get 15km reach, analytics, and custom avatars
                 </p>
               </div>
-              <motion.button
-                whileTap={{ scale: 0.9 }}
+              <button
+                
                 className="bg-white text-[#00C4CC] px-4 py-2 rounded-full font-medium hover:bg-gray-100 transition-colors"
               >
                 Upgrade
-              </motion.button>
+              </button>
             </div>
-          </motion.div>
+          </div>
         </div>
       </main>
       <BottomNav />

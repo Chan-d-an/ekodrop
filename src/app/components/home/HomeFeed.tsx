@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PostCard } from './PostCard';
-import { Post } from '@/lib/types';
+
 
 // Mock data for demo
 // Ultra‑funny / trolling campus feed
@@ -315,31 +315,41 @@ const mockPosts: Post[] = [
 
 
 
-
 export function HomeFeed() {
-  const [posts, setPosts] = useState<Post[]>(mockPosts)
+  const [posts, setPosts] = useState<Post[]>([]);
 
-  /* --- actions stay exactly the same --- */
+  useEffect(() => {
+    const feedType = localStorage.getItem('selectedFeed') || 'Anonymous Users';
+
+    let filtered: Post[] = [];
+
+    if (feedType === 'Anonymous Users') {
+      filtered = mockPosts.filter(p => p.isAnon);
+    } else if (feedType === 'Real Account Users') {
+      filtered = mockPosts.filter(p => !p.isAnon);
+    } else {
+      filtered = mockPosts;
+    }
+
+    setPosts(filtered);
+  }, []); // Run only once when HomeFeed mounts
+
   const handleLike = (postId: string) =>
     setPosts(p =>
       p.map(post =>
-        post.id === postId
-          ? { ...post, likes: [...post.likes, 'currentUser'] }
-          : post
+        post.id === postId ? { ...post, likes: [...post.likes, 'currentUser'] } : post
       )
-    )
+    );
+
   const handleComment = (postId: string) => {
-    // Navigate to comments
     console.log('Comment on post:', postId);
   };
 
   const handleShare = (postId: string) => {
-    // Share functionality
     console.log('Share post:', postId);
   };
 
   const handleEcho = (postId: string) => {
-    // Echo functionality
     console.log('Echo post:', postId);
   };
 
@@ -347,24 +357,23 @@ export function HomeFeed() {
     hidden: { opacity: 1 },
     show: {
       opacity: 1,
-      transition: { staggerChildren: 0.08 }
-    }
-  }
+      transition: { staggerChildren: 0.08 },
+    },
+  };
 
   const item = {
     hidden: { opacity: 0, y: 30 },
-    show:   { opacity: 1, y: 0 }
-  }
+    show: { opacity: 1, y: 0 },
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[rgb(245,247,249)] to-[#E8F4FD] pt-16 pb-20">
-      <motion.div
-        variants={container}
-        initial="hidden"
-        animate="show"
+      <div
+        
         className="max-w-md mx-auto space-y-2 px-2"
       >
         {posts.map(post => (
-          <motion.div key={post.id} variants={item}>
+          <div key={post.id} variants={item}>
             <PostCard
               post={post}
               onLike={handleLike}
@@ -372,9 +381,9 @@ export function HomeFeed() {
               onShare={handleShare}
               onEcho={handleEcho}
             />
-          </motion.div>
+          </div>
         ))}
-      </motion.div>
+      </div>
     </div>
-  )
+  );
 }

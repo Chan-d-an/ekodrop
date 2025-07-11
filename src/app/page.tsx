@@ -69,7 +69,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#F5FAFF] to-[#E8F4FD]">
       <Header />
-      <main>
+      <main className=''>
         <HomeFeed />
       </main>
       <BottomNav />

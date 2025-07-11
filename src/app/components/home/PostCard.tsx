@@ -10,7 +10,7 @@ import {
   Ghost,
   Leaf
 } from 'lucide-react'
-import { Post } from '@/lib/types'
+import { Post } from '@/app/lib/types'
 
 /* ─── helpers ───────────────────────────────────────────────────────── */
 const categoryFor = (post: Post) =>
@@ -77,11 +77,8 @@ export function PostCard({
 
   /* ── layout ──────────────────────────────────────────────────────── */
   return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
+    <div
+      
       className="bg-white rounded-3xl border border-gray-200 p-4 shadow-sm "
     >
       {/* top row: avatar + category pill */}
@@ -167,6 +164,6 @@ export function PostCard({
           <MoreHorizontal size={20} />
         </button>
       </div>
-    </motion.div>
+    </div>
   )
 }

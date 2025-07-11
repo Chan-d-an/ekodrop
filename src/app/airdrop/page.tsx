@@ -29,13 +29,11 @@ export default function AirDropPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#F5FAFF] to-[#E8F4FD]">
-      <Header />
-      <main className="pt-16 pb-20 px-4">
+     
+      <main className="pt-8 pb-20 px-4">
         <div className="max-w-md mx-auto">
           {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+          <div
             
           >
             <div className="w-20 h-20 bg-gradient-to-r from-[#00C4CC] to-[#8E44AD] rounded-full flex items-center justify-center mx-auto mb-4">
@@ -43,17 +41,15 @@ export default function AirDropPage() {
             </div>
             <h1 className="text-2xl font-bold text-gray-800 mb-2">AirDrop</h1>
             <p className="text-gray-600">Share your presence with nearby users</p>
-          </motion.div>
+          </div>
 
           {/* Scan Button */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.1 }}
+          <div
+            
             className="mb-8"
           >
-            <motion.button
-              whileTap={{ scale: 0.95 }}
+            <button
+              
               onClick={handleScan}
               disabled={isScanning}
               className={`w-full py-4 rounded-full font-medium text-lg transition-all ${
@@ -78,14 +74,12 @@ export default function AirDropPage() {
                   <span>Find Nearby Users</span>
                 </div>
               )}
-            </motion.button>
-          </motion.div>
+            </button>
+          </div>
 
           {/* Nearby Users */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+          <div
+            
           >
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold text-gray-800">Nearby Users</h2>
@@ -93,14 +87,11 @@ export default function AirDropPage() {
             </div>
 
             <div className="space-y-3">
-              <AnimatePresence>
+              <div>
                 {nearbyUsers.map((user, index) => (
-                  <motion.div
+                  <div
                     key={user.id}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 20 }}
-                    transition={{ delay: index * 0.1 }}
+                    
                     className="bg-white rounded-lg p-4 shadow-sm border border-gray-200"
                   >
                     <div className="flex items-center justify-between">
@@ -123,30 +114,29 @@ export default function AirDropPage() {
                       </div>
                       
                       <div className="flex space-x-2">
-                        <motion.button
-                          whileTap={{ scale: 0.9 }}
+                        <button
+                          
                           className="px-3 py-1 bg-[#00C4CC] text-white rounded-full text-sm hover:bg-[#00B0B8] transition-colors"
                         >
                           Chat
-                        </motion.button>
-                        <motion.button
-                          whileTap={{ scale: 0.9 }}
+                        </button>
+                        <button
+                          
                           className="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-sm hover:bg-gray-300 transition-colors"
                         >
                           Share
-                        </motion.button>
+                        </button>
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
-              </AnimatePresence>
+              </div>
             </div>
 
             {/* Empty State */}
             {nearbyUsers.length === 0 && !isScanning && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
+              <div
+                
                 className="text-center py-12"
               >
                 <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -156,9 +146,9 @@ export default function AirDropPage() {
                 <p className="text-gray-600 text-sm">
                   Try scanning again or move to a different location
                 </p>
-              </motion.div>
+              </div>
             )}
-          </motion.div>
+          </div>
         </div>
       </main>
       <BottomNav />

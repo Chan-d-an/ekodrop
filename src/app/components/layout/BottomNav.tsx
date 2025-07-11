@@ -23,12 +23,7 @@ const NavItem = ({ icon: Icon, label, path, isActive, onClick }: {
   >
     <Icon size={20} className={isActive ? 'drop-shadow-sm' : ''} />
     <span className="text-xs mt-1 font-medium">{label}</span>
-    {isActive && (
-      <motion.div
-        layoutId="activeTab"
-        className="absolute -top-1 w-1 h-1 bg-[#00C4CC] rounded-full"
-      />
-    )}
+    
   </motion.button>
 );
 
@@ -39,17 +34,17 @@ export function BottomNav() {
   const navItems = [
     { icon: Home, label: 'Home', path: '/' },
     { icon: Search, label: 'Search', path: '/search' },
-    { icon: MessageCircle, label: 'Chat', path: '/chat' },
+
     { icon: Droplet, label: 'Drop', path: '/drop' },
-    { icon: User, label: 'Profile', path: '/profile' },
+    
     { icon: Zap, label: 'AirDrop', path: '/airdrop' },
+    { icon: User, label: 'Profile', path: '/profile' },
   ];
 
   return (
-    <motion.div
-      initial={{ y: 100 }}
-      animate={{ y: 0 }}
-      className="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-lg border-t border-gray-200 z-50"
+    <div
+      
+      className="fixed bottom-0 left-0 right-0 bg-white backdrop-blur-lg border-t border-gray-200 z-50"
     >
       <div className="flex justify-around items-center px-4 py-2 max-w-md mx-auto">
         {navItems.map((item) => (
@@ -63,6 +58,6 @@ export function BottomNav() {
           />
         ))}
       </div>
-    </motion.div>
+    </div>
   );
 }

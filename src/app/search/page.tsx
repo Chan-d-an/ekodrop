@@ -21,14 +21,13 @@ export default function SearchPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#F5FAFF] to-[#E8F4FD]">
-      <Header />
-      <main className="pt-16 pb-20 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-[#F5FAFF] to-[#E8F4FD] ">
+      
+      <main className="pt-6 pb-20 px-4">
         <div className="max-w-md mx-auto">
           {/* Search Bar */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+          <div
+            
             className="relative mb-6"
           >
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
@@ -37,13 +36,11 @@ export default function SearchPage() {
               placeholder="Search drops, topics, or locations..."
               className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-[#00C4CC] focus:border-transparent shadow-sm"
             />
-          </motion.div>
+          </div>
 
           {/* Trending Topics */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          <div
+            
             className="mb-6"
           >
             <div className="flex items-center space-x-2 mb-4">
@@ -52,7 +49,7 @@ export default function SearchPage() {
             </div>
             <div className="space-y-2">
               {trendingTopics.map((item, index) => (
-                <motion.button
+                <button
                   key={item.topic}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -63,16 +60,14 @@ export default function SearchPage() {
                     <span className="text-gray-800 font-medium">#{item.topic}</span>
                     <span className="text-gray-500 text-sm">{item.posts} drops</span>
                   </div>
-                </motion.button>
+                </button>
               ))}
             </div>
-          </motion.div>
+          </div>
 
           {/* Nearby Posts */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+          <div
+            
           >
             <div className="flex items-center space-x-2 mb-4">
               <MapPin className="text-[#8E44AD]" size={20} />
@@ -80,11 +75,9 @@ export default function SearchPage() {
             </div>
             <div className="space-y-2">
               {nearbyPosts.map((post, index) => (
-                <motion.div
+                <div
                   key={post.id}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.4 + index * 0.1 }}
+                  
                   className="p-3 bg-white rounded-lg border border-gray-200 hover:border-[#8E44AD] transition-colors cursor-pointer"
                 >
                   <p className="text-gray-700 text-sm">{post.snippet}</p>
@@ -94,10 +87,10 @@ export default function SearchPage() {
                     <span>•</span>
                     <span>0.5km away</span>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </main>
       <BottomNav />
