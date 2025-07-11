@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
+ 
 import {
   ArrowUp,
   ArrowDown,
@@ -49,8 +51,7 @@ export function PostCard({
   post,
   onLike,
   onComment,
-  onShare,
-  onEcho
+  
 }: Props) {
   /* local state for vote toggles */
   const [upvoted, setUpvoted] = useState(false)
@@ -61,7 +62,8 @@ export function PostCard({
 
   /* quick derived counts so UI responds instantly */
   const upCount   = post.likes.length + (upvoted ? 1 : 0) - (downvoted ? 1 : 0)
-  const downCount = (post as any).dislikes?.length ?? 0 + (downvoted ? 1 : 0)
+const downCount = ((post as any).dislikes?.length) ?? (0 + (downvoted ? 1 : 0))
+
 
   const handleUpvote = () => {
     setUpvoted(p => !p)
@@ -114,9 +116,11 @@ export function PostCard({
 
       {/* optional image */}
       {post.imageURL && (
-        <img
-          src={post.imageURL}
+        <Image
+          src={post.imageURL} 
           alt="post visual"
+          width={500}
+    height={300} 
           className="mt-4 w-full rounded-xl object-cover"
         />
       )}

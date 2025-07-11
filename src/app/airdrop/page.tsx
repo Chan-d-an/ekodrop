@@ -1,10 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { Header } from '@/components/layout/Header';
 import { BottomNav } from '@/components/layout/BottomNav';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Zap, Users, Wifi, WifiOff, User, Ghost } from 'lucide-react';
+import { motion} from 'framer-motion';
+import { Zap,Users, Wifi, WifiOff,User, Ghost } from 'lucide-react';
 
 export default function AirDropPage() {
   const [isScanning, setIsScanning] = useState(false);
@@ -88,7 +87,7 @@ export default function AirDropPage() {
 
             <div className="space-y-3">
               <div>
-                {nearbyUsers.map((user, index) => (
+                {nearbyUsers.map((user) => (
                   <div
                     key={user.id}
                     

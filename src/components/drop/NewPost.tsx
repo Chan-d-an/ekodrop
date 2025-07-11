@@ -3,13 +3,15 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Camera, MapPin, Clock, Ghost, User, X, Check } from 'lucide-react';
+import Image from 'next/image'
+ 
 
 export function NewPost() {
   const [step, setStep] = useState(1);
   const [caption, setCaption] = useState('');
   const [isAnonymous, setIsAnonymous] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [location, setLocation] = useState('Current Location');
+  const [location] = useState('Current Location');
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -94,7 +96,7 @@ export function NewPost() {
                     >
                       {selectedImage ? (
                         <div className="relative h-full">
-                          <img
+                          <Image
                             src={selectedImage}
                             alt="Selected"
                             className="w-full h-full object-cover rounded-lg"
@@ -134,9 +136,8 @@ export function NewPost() {
                   initial={{ opacity: 0, x: 100 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -100 }}
-                  className="space-y-4"
-                >
-                  <h3 className="text-lg font-semibold text-gray-800 mb-4">What's on your mind?</h3>
+                  className="space-y-4">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-4">What&apos;s on your mind?</h3>
                   
                   <div className="relative">
                     <textarea

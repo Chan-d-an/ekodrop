@@ -1,8 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+
 import { PostCard } from './PostCard';
+import { Post } from '@/lib/types';
 
 
 // Mock data for demo
@@ -353,18 +354,9 @@ export function HomeFeed() {
     console.log('Echo post:', postId);
   };
 
-  const container = {
-    hidden: { opacity: 1 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.08 },
-    },
-  };
 
-  const item = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0 },
-  };
+
+  
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[rgb(245,247,249)] to-[#E8F4FD] pt-16 pb-20">
@@ -373,7 +365,7 @@ export function HomeFeed() {
         className="max-w-md mx-auto space-y-2 px-2"
       >
         {posts.map(post => (
-          <div key={post.id} variants={item}>
+          <div key={post.id} >
             <PostCard
               post={post}
               onLike={handleLike}

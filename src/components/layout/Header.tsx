@@ -10,7 +10,7 @@ import {
   Ghost,
   Layers
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion} from "framer-motion";
 
 export function Header() {
   const [showHeader, setShowHeader] = useState(true);

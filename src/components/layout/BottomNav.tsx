@@ -1,12 +1,13 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
-import { Home, Search, MessageCircle, Droplet, User, Zap } from 'lucide-react';
-import { motion } from 'framer-motion';
 
-const NavItem = ({ icon: Icon, label, path, isActive, onClick }: {
-  icon: any;
+import { useRouter, usePathname } from 'next/navigation';
+import { Home, Search, Droplet, User, Zap } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
+
+const NavItem = ({ icon: Icon, label, isActive, onClick }: {
+  icon: Icon;
   label: string;
   path: string;
   isActive: boolean;

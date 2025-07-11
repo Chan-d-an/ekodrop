@@ -1,9 +1,9 @@
 'use client';
 
-import { Header } from '@/components/layout/Header';
+
 import { BottomNav } from '@/components/layout/BottomNav';
-import { motion } from 'framer-motion';
-import { User, Settings, Crown, Zap, MapPin, Clock, Edit } from 'lucide-react';
+
+import { User, Crown, Zap, MapPin, Clock, Edit } from 'lucide-react';
 
 export default function ProfilePage() {
   const userStats = {
@@ -101,7 +101,7 @@ export default function ProfilePage() {
           >
             <h2 className="text-lg font-semibold text-gray-800 mb-4">Recent Drops</h2>
             <div className="space-y-3">
-              {recentPosts.map((post, index) => (
+              {recentPosts.map((post) => (
                 <div
                   key={post.id}
                   

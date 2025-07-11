@@ -1,8 +1,8 @@
 'use client';
 
-import { Header } from '@/components/layout/Header';
+
 import { BottomNav } from '@/components/layout/BottomNav';
-import { motion } from 'framer-motion';
+
 import { Search, TrendingUp, MapPin, Clock } from 'lucide-react';
 
 export default function SearchPage() {
@@ -48,12 +48,10 @@ export default function SearchPage() {
               <h2 className="text-lg font-semibold text-gray-800">Trending</h2>
             </div>
             <div className="space-y-2">
-              {trendingTopics.map((item, index) => (
+              {trendingTopics.map((item) => (
                 <button
                   key={item.topic}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2 + index * 0.1 }}
+                  
                   className="w-full p-3 bg-white rounded-lg border border-gray-200 hover:border-[#00C4CC] transition-colors text-left"
                 >
                   <div className="flex items-center justify-between">
@@ -74,7 +72,7 @@ export default function SearchPage() {
               <h2 className="text-lg font-semibold text-gray-800">Nearby</h2>
             </div>
             <div className="space-y-2">
-              {nearbyPosts.map((post, index) => (
+              {nearbyPosts.map((post) => (
                 <div
                   key={post.id}
                   
