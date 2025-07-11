@@ -12,7 +12,7 @@ import {
   Ghost,
   Leaf
 } from 'lucide-react'
-import { Post } from '@/lib/types'
+import { Post } from '@/types/types'
 
 /* ─── helpers ───────────────────────────────────────────────────────── */
 const categoryFor = (post: Post) =>

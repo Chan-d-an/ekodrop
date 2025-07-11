@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 
 import { PostCard } from './PostCard';
-import { Post } from '@/lib/types';
+import { Post } from '@/types/types';
 
 
 // Mock data for demo
