@@ -2,12 +2,12 @@
 
 
 import { useRouter, usePathname } from 'next/navigation';
-import { Home, Search, Droplet, User, Zap } from 'lucide-react';
+import { Home, Search, Droplet, User, Zap, LucideIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
+
 
 const NavItem = ({ icon: Icon, label, isActive, onClick }: {
-  icon: Icon;
+  icon: LucideIcon;
   label: string;
   path: string;
   isActive: boolean;
