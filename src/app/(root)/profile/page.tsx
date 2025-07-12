@@ -1,11 +1,17 @@
-'use client';
+
 
 
 import { BottomNav } from '@/components/layout/BottomNav';
+import { getSession } from '@/lib/getSession';
 
-import { User, Crown, Zap, MapPin, Clock, Edit } from 'lucide-react';
+import { User, Crown, Zap, MapPin, Clock, Settings } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
-export default function ProfilePage() {
+export default async function ProfilePage() {
+  const session = await getSession();
+  const user = session?.user;
+
   const userStats = {
     drops: 23,
     echoes: 156,
@@ -32,27 +38,33 @@ export default function ProfilePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#F5FAFF] to-[#E8F4FD]">
-      
-      <main className="pt-4 pb-20 px-4">
+
+      <main className="py-20 px-4">
         <div className="max-w-md mx-auto">
           {/* Profile Header */}
           <div
-            
+
             className="bg-white rounded-2xl p-6 shadow-lg mb-6"
           >
             <div className="flex items-center space-x-4">
               <div className="relative">
-                <div className="w-20 h-20 bg-gradient-to-r from-[#00C4CC] to-[#8E44AD] rounded-full flex items-center justify-center">
+                {user?.image ? <Image
+                  src={user?.image ? user.image : '/icons/profile.jpg'}
+                  alt="Profile"
+                  className="rounded-full object-cover border-4 border-white shadow-lg"
+                  width={70}
+                  height={70}
+                /> : <div className="w-20 h-20 bg-gradient-to-r from-[#00C4CC] to-[#8E44AD] rounded-full flex items-center justify-center">
                   <User className="text-white" size={32} />
-                </div>
+                </div>}
                 <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-yellow-400 rounded-full flex items-center justify-center">
                   <Crown size={14} className="text-white" />
                 </div>
               </div>
-              
+
               <div className="flex-1">
                 <div className="flex items-center space-x-2">
-                  <h1 className="text-xl font-bold text-gray-800">Alex Johnson</h1>
+                  <h1 className="text-xl font-bold text-gray-800">{user?.name}</h1>
                   <span className="px-2 py-1 bg-gradient-to-r from-[#00C4CC] to-[#8E44AD] text-white text-xs rounded-full">
                     {userStats.tier}
                   </span>
@@ -61,19 +73,15 @@ export default function ProfilePage() {
                   Digital nomad | Coffee enthusiast | Late night thinker
                 </p>
               </div>
-              
-              <button
-               
-                className="p-2 rounded-full hover:bg-gray-100 transition-colors"
-              >
-                <Edit size={18} className="text-gray-600" />
-              </button>
+              <Link href={'/profile/settings'} className="px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors">
+                <Settings className="w-4 h-4" />
+              </Link>
             </div>
           </div>
 
           {/* Stats Grid */}
           <div
-            
+
             className="grid grid-cols-4 gap-4 mb-6"
           >
             <div className="bg-white rounded-lg p-3 text-center shadow-sm">
@@ -96,7 +104,7 @@ export default function ProfilePage() {
 
           {/* Recent Posts */}
           <div
-           
+
             className="mb-6"
           >
             <h2 className="text-lg font-semibold text-gray-800 mb-4">Recent Drops</h2>
@@ -104,7 +112,7 @@ export default function ProfilePage() {
               {recentPosts.map((post) => (
                 <div
                   key={post.id}
-                  
+
                   className="bg-white rounded-lg p-4 shadow-sm border border-gray-200"
                 >
                   <p className="text-gray-800 mb-3">{post.caption}</p>
@@ -130,7 +138,7 @@ export default function ProfilePage() {
           </div>
           {/* Upgrade CTA */}
           <div
-           
+
             className="bg-gradient-to-r from-[#00C4CC] to-[#8E44AD] rounded-2xl p-6 text-white"
           >
             <div className="flex items-center justify-between">
@@ -141,7 +149,7 @@ export default function ProfilePage() {
                 </p>
               </div>
               <button
-                
+
                 className="bg-white text-[#00C4CC] px-4 py-2 rounded-full font-medium hover:bg-gray-100 transition-colors"
               >
                 Upgrade
