@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
- 
+
 import {
   ArrowUp,
   ArrowDown,
@@ -13,8 +13,6 @@ import {
   Leaf
 } from 'lucide-react'
 import { Post } from '@/types/types'
-
-/* ─── helpers ───────────────────────────────────────────────────────── */
 const categoryFor = (post: Post) =>
   post.isAnon ? 'Confession' : post.imageURL ? 'Meme' : 'Post'
 
@@ -51,18 +49,22 @@ export function PostCard({
   post,
   onLike,
   onComment,
-  
+
 }: Props) {
-  /* local state for vote toggles */
+
   const [upvoted, setUpvoted] = useState(false)
   const [downvoted, setDownvoted] = useState(false)
 
   const category = categoryFor(post)
   const catColor = categoryColor(category)
 
-  /* quick derived counts so UI responds instantly */
-  const upCount   = post.likes.length + (upvoted ? 1 : 0) - (downvoted ? 1 : 0)
-const downCount = ((post as any).dislikes?.length) ?? (0 + (downvoted ? 1 : 0))
+
+  const upCount = post.likes.length + (upvoted ? 1 : 0) - (downvoted ? 1 : 0)
+  const downCount =
+    ('dislikes' in post && Array.isArray(post.dislikes)
+      ? post.dislikes.length
+      : 0) + (downvoted ? 1 : 0)
+
 
 
   const handleUpvote = () => {
@@ -80,7 +82,7 @@ const downCount = ((post as any).dislikes?.length) ?? (0 + (downvoted ? 1 : 0))
   /* ── layout ──────────────────────────────────────────────────────── */
   return (
     <div
-      
+
       className="bg-white rounded-3xl border border-gray-200 p-4 shadow-sm "
     >
       {/* top row: avatar + category pill */}
@@ -89,14 +91,14 @@ const downCount = ((post as any).dislikes?.length) ?? (0 + (downvoted ? 1 : 0))
         <div className="flex-none w-8 h-8 rounded-full bg-gradient-to-br from-[#00C4CC] to-[#8E44AD] grid place-items-center">
           {post.isAnon ? (
             <div className="w-8 h-8 bg-[#53C7C0] rounded-full  flex items-center justify-center">
-           
-                <Ghost size={22} className="text-black  rounded-full " />
+
+              <Ghost size={22} className="text-black  rounded-full " />
             </div>
 
           ) : (
             <div className="w-8 h-8 bg-[#70F1F1] rounded-full  flex items-center justify-center">
-           
-                <Leaf size={22} className="text-black  rounded-full " />
+
+              <Leaf size={22} className="text-black  rounded-full " />
             </div>
           )}
         </div>
@@ -117,10 +119,10 @@ const downCount = ((post as any).dislikes?.length) ?? (0 + (downvoted ? 1 : 0))
       {/* optional image */}
       {post.imageURL && (
         <Image
-          src={post.imageURL} 
+          src={post.imageURL}
           alt="post visual"
           width={500}
-    height={300} 
+          height={300}
           className="mt-4 w-full rounded-xl object-cover"
         />
       )}
