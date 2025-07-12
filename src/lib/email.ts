@@ -29,7 +29,7 @@ export const sendVerificationEmail = async (to: string, token: string) => {
 };
 
 export const sendPasswordResetEmail = async (to: string, token: string) => {
-  const resetUrl = `${process.env.APP_URL}/reset-password?token=${token}`;
+  const resetUrl = `${process.env.APP_URL}/reset?token=${token}`;
 
   await transporter.sendMail({
     from: process.env.EMAIL_FROM,
