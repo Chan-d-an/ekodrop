@@ -1,6 +1,5 @@
 import { Suspense } from 'react';
 import { Metadata } from 'next';
-import { Droplet } from 'lucide-react';
 import VerifyEmailClient from '@/components/auth/VerifyEmailClient';
 
 export const metadata: Metadata = {
@@ -35,22 +34,7 @@ export default function VerifyEmail() {
 
         {/* Content Container */}
         <div className="relative h-full flex flex-col p-16 z-10">
-          {/* Logo Section */}
-          <div className="flex items-center space-x-4 mb-16">
-            <div className="w-14 h-14 bg-white/10 backdrop-blur-xl rounded-2xl 
-                          flex items-center justify-center border border-white/20
-                          shadow-lg shadow-black/5 relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 
-                            group-hover:opacity-100 transition-opacity duration-500" />
-             <div className="bg-gradient-to-r from-cyan-500 to-cyan-400 p-2.5 rounded-xl">
-                               <Droplet className="w-6 h-6 text-white" />
-                             </div>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-white/90 text-2xl font-bold tracking-wide">Arkin</span>
-              <span className="text-white/60 text-sm">Account Verification</span>
-            </div>
-          </div>
+         
 
           {/* Main Content */}
           <div className="max-w-lg">

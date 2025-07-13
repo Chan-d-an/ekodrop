@@ -86,22 +86,7 @@ export default async function VerificationSent() {
             </div>
           </div>
 
-          {/* Help Box */}
-          <div className="mt-8 p-6 bg-gray-50 border border-gray-100 rounded-2xl">
-            <h3 className="text-gray-900 font-medium mb-3">
-              Didn&apos;t receive the email?
-            </h3>
-            <p className="text-gray-600 text-sm">
-              Check your spam folder or contact our
-              <Link
-                href="/support"
-                className="text-cyan-600 hover:text-cyan-500 ml-1"
-              >
-                support team
-              </Link>{" "}
-              for assistance.
-            </p>
-          </div>
+         
         </div>
       </div>
     </div>
