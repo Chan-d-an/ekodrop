@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { Header } from '@/components/layout/Header';
-import { BottomNav } from '@/components/layout/BottomNav';
+
 import { getSession } from "@/lib/getSession";
 import { redirect } from "next/navigation";
 
@@ -20,11 +19,11 @@ export default async function Layout({
   if (!user) return redirect("/get-start");
   return (
     <div className={` min-h-screen bg-gradient-to-br from-[#F5FAFF] to-[#E8F4FD]`}>
-      <Header />
+    
       <main>
         {children}
       </main>
-      <BottomNav />
+      
     </div>
   );
 }
