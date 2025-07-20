@@ -39,7 +39,7 @@ const categoryColor = (category: string) => {
 }
 */}
 
-
+{/** 
 
 const categoryColor = (category: string) => {
   switch (category) {
@@ -59,7 +59,7 @@ const categoryColor = (category: string) => {
         text: 'text-gray-800'
       }
   }
-}
+}*/}
 /* ─── component ─────────────────────────────────────────────────────── */
 interface Props {
   post: Post

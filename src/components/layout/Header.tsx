@@ -4,10 +4,6 @@ import { useEffect, useState } from "react";
 import {
   Bell,
   Droplet,
-  ChevronDown,
-  User,
-  Ghost,
-  Layers,
   Settings
 } from "lucide-react";
 import { motion } from "framer-motion";
