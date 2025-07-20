@@ -1,14 +1,16 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { PostCard } from "./PostCard";
+import { Post } from "@/types/types"; // Ensure this type is defined correctly
+import { Infinity } from "lucide-react";
 
-import { PostCard } from './PostCard';
-import { Post } from '@/types/types';
+// Mock data
 
 
-// Mock data for demo
-// Ultra‑funny / trolling campus feed
-const mockPosts: Post[] = [
+
+  const mockPosts: Post[] = [
   {
     id: '1',
     uid: 'userLOL1',
@@ -309,72 +311,88 @@ const mockPosts: Post[] = [
 ];
 
 
-  // Add more entries as needed in the same format...
-
-
-
-
-
-
 export function HomeFeed() {
+  const [feedType, setFeedType] = useState<"Anonymous" | "Blend" | "Real">("Blend");
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
-    const feedType = localStorage.getItem('selectedFeed') || 'Anonymous Users';
+    const stored = localStorage.getItem("selectedFeed");
+    if (stored === "Anonymous") setFeedType("Anonymous");
+    else if (stored === "Real") setFeedType("Real");
+    else setFeedType("Blend");
+  }, []);
 
+  useEffect(() => {
     let filtered: Post[] = [];
 
-    if (feedType === 'Anonymous Users') {
-      filtered = mockPosts.filter(p => p.isAnon);
-    } else if (feedType === 'Real Account Users') {
-      filtered = mockPosts.filter(p => !p.isAnon);
+    if (feedType === "Anonymous") {
+      filtered = mockPosts.filter((post) => post.isAnon);
+    } else if (feedType === "Real") {
+      filtered = mockPosts.filter((post) => !post.isAnon);
     } else {
-      filtered = mockPosts;
+      filtered = [...mockPosts];
     }
 
     setPosts(filtered);
-  }, []); // Run only once when HomeFeed mounts
+    localStorage.setItem("selectedFeed", feedType);
+  }, [feedType]);
 
-  const handleLike = (postId: string) =>
-    setPosts(p =>
-      p.map(post =>
-        post.id === postId ? { ...post, likes: [...post.likes, 'currentUser'] } : post
+  const handleLike = (postId: string) => {
+    setPosts((prev) =>
+      prev.map((p) =>
+        p.id === postId ? { ...p, likes: [...p.likes, "currentUser"] } : p
       )
     );
-
-  const handleComment = (postId: string) => {
-    console.log('Comment on post:', postId);
   };
 
-  const handleShare = (postId: string) => {
-    console.log('Share post:', postId);
-  };
-
-  const handleEcho = (postId: string) => {
-    console.log('Echo post:', postId);
-  };
-
-
-
-  
+  const handleComment = (postId: string) => console.log("Comment:", postId);
+  const handleShare = (postId: string) => console.log("Share:", postId);
+  const handleEcho = (postId: string) => console.log("Echo:", postId);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[rgb(245,247,249)] to-[#E8F4FD] pt-16 pb-20">
-      <div
-        
-        className="max-w-md mx-auto space-y-2 px-2"
-      >
-        {posts.map(post => (
-          <div key={post.id} >
-            <PostCard
-              post={post}
-              onLike={handleLike}
-              onComment={handleComment}
-              onShare={handleShare}
-              onEcho={handleEcho}
-            />
-          </div>
-        ))}
+    <div className="min-h-screen bg-light dark:bg-dark pt-16 pb-20">
+      {/* Feed toggle buttons */}
+      <div className="flex  justify-center mb-2 ">
+        <div className="max-w-md px-4 w-full">
+        <div className="flex bg-secondary dark:bg-secondary/10 justify-between p-1 max-w-md rounded-xl bg-  w-full shadow-sm">
+          {["Blend", "Anonmous", "Real"].map((type) => (
+            <button
+              key={type}
+              onClick={() => setFeedType(type as typeof feedType)}
+              className={`px-4 py-1 text-sm font-semibold rounded-full transition flex items-center gap-1 ${
+                feedType === type ? "bg-light dark:bg-light text-tlight dark:tdark shadow" : "text-tlight/70 dark:text-tdark/70"
+              }`}
+            >
+              {type === "Blend" && <Infinity className="w-4 h-4" />}
+              {type}
+            </button>
+          ))}
+        </div>
+        </div>
+      </div>
+
+      {/* Posts */}
+      <div className="max-w-md mx-auto  ">
+        <AnimatePresence mode="wait">
+          {posts.map((post) => (
+            <motion.div
+              key={post.id}
+              layout
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+            >
+              <PostCard
+                post={post}
+                onLike={handleLike}
+                onComment={handleComment}
+                onShare={handleShare}
+                onEcho={handleEcho}
+              />
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
     </div>
   );

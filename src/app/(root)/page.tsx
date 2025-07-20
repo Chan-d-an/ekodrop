@@ -5,7 +5,7 @@ export default function Home() {
 
 
   return (
-    <div >
+    <div className='dark light'>
       <Header />
       <HomeFeed />
       <BottomNav />
