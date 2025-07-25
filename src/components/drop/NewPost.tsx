@@ -35,20 +35,20 @@ export function NewPost() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#F5FAFF] to-[#E8F4FD] pt-16 pb-20">
+    <div className="min-h-screen bg-dark pt-16 pb-20">
       <div className="max-w-md mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-2xl shadow-lg overflow-hidden"
+          className="bg-dark rounded-2xl shadow-lg overflow-hidden"
         >
           {/* Header */}
-          <div className="bg-gradient-to-r from-[#00C4CC] to-[#8E44AD] p-4">
+          <div className="bg-dark p-4">
             <div className="flex items-center justify-between">
-              <h2 className="text-white text-xl font-bold">Create Drop</h2>
+              <h2 className="text-tdark text-xl font-bold">Create Drop</h2>
               <div className="flex items-center space-x-2">
-                <Clock className="text-white" size={16} />
-                <span className="text-white text-sm">24h</span>
+                <Clock className="text-tdark" size={16} />
+                <span className="text-tdark text-sm">24h</span>
               </div>
             </div>
             
@@ -57,10 +57,10 @@ export function NewPost() {
               {[1, 2, 3].map((num) => (
                 <motion.div
                   key={num}
-                  className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all ${
+                  className={`w-8 h-8 rounded-full flex items-center  text-shadow-black text-shadow-xs justify-center text-sm font-bold transition-all ${
                     step >= num 
-                      ? 'bg-white text-[#00C4CC]' 
-                      : 'bg-white/20 text-white'
+                      ? 'bg-primary text-tdark' 
+                      : 'bg-secondary/20 text-tdark'
                   }`}
                   animate={{ scale: step === num ? 1.1 : 1 }}
                 >
@@ -80,7 +80,7 @@ export function NewPost() {
                   exit={{ opacity: 0, x: -100 }}
                   className="space-y-4"
                 >
-                  <h3 className="text-lg font-semibold text-gray-800 mb-4">Add Photo (Optional)</h3>
+                  <h3 className="text-lg font-semibold text-tdark mb-4">Add Photo (Optional)</h3>
                   
                   <div className="relative">
                     <input
@@ -92,7 +92,7 @@ export function NewPost() {
                     />
                     <label
                       htmlFor="imageUpload"
-                      className="block w-full h-48 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-[#00C4CC] transition-colors"
+                      className="block w-full h-48 border-1 border-dashed border-secondary rounded-lg cursor-pointer hover:border-primary transition-colors"
                     >
                       {selectedImage ? (
                         <div className="relative h-full">
@@ -106,13 +106,13 @@ export function NewPost() {
                               e.preventDefault();
                               setSelectedImage(null);
                             }}
-                            className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 transition-colors"
+                            className="absolute top-2 right-2 text-tdark rounded-full p-1 transition-colors"
                           >
                             <X size={16} />
                           </button>
                         </div>
                       ) : (
-                        <div className="flex flex-col items-center justify-center h-full text-gray-400">
+                        <div className="flex flex-col items-center justify-center h-full text-tdark">
                           <Camera size={48} className="mb-2" />
                           <span className="text-sm">Tap to add photo</span>
                         </div>
@@ -123,7 +123,7 @@ export function NewPost() {
                   <motion.button
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setStep(2)}
-                    className="w-full bg-gradient-to-r from-[#00C4CC] to-[#8E44AD] text-white py-3 rounded-lg font-medium hover:shadow-lg transition-shadow"
+                    className="w-full bg-secondary/20 text-primary  text-shadow-black text-shadow-xs py-3 rounded-lg font-medium hover:shadow-lg transition-shadow"
                   >
                     Next
                   </motion.button>
@@ -137,17 +137,17 @@ export function NewPost() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -100 }}
                   className="space-y-4">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-4">What&apos;s on your mind?</h3>
+                  <h3 className="text-lg font-semibold text-secondary mb-4">What&apos;s on your mind?</h3>
                   
                   <div className="relative">
                     <textarea
                       value={caption}
                       onChange={(e) => setCaption(e.target.value)}
                       placeholder="Share your thoughts..."
-                      className="w-full h-32 p-4 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-[#00C4CC] focus:border-transparent"
+                      className="w-full h-32 p-4 text-secondary border-1 border-secondary/10 rounded-lg resize-none focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent"
                       maxLength={220}
                     />
-                    <span className="absolute bottom-2 right-2 text-xs text-gray-400">
+                    <span className="absolute bottom-2 right-2 text-xs text-tdark">
                       {caption.length}/220
                     </span>
                   </div>
@@ -156,7 +156,7 @@ export function NewPost() {
                     <motion.button
                       whileTap={{ scale: 0.95 }}
                       onClick={() => setStep(1)}
-                      className="flex-1 bg-gray-200 text-gray-700 py-3 rounded-lg font-medium hover:bg-gray-300 transition-colors"
+                      className="flex-1 bg-secondary/20 text-tdark py-3 rounded-lg font-medium transition-colors"
                     >
                       Back
                     </motion.button>
@@ -164,7 +164,7 @@ export function NewPost() {
                       whileTap={{ scale: 0.95 }}
                       onClick={() => setStep(3)}
                       disabled={!caption.trim()}
-                      className="flex-1 bg-gradient-to-r from-[#00C4CC] to-[#8E44AD] text-white py-3 rounded-lg font-medium hover:shadow-lg transition-shadow disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="flex-1 bg-secondary/20 text-primary  text-shadow-black text-shadow-xs py-3 rounded-lg font-medium hover:shadow-lg transition-shadow disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       Next
                     </motion.button>
@@ -180,34 +180,34 @@ export function NewPost() {
                   exit={{ opacity: 0, x: -100 }}
                   className="space-y-4"
                 >
-                  <h3 className="text-lg font-semibold text-gray-800 mb-4">Privacy Settings</h3>
+                  <h3 className="text-lg font-semibold text-tdark mb-4">Privacy Settings</h3>
                   
                   <div className="space-y-4">
-                    <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                    <div className="flex items-center justify-between p-4 border border-secondary/10 rounded-lg">
                       <div className="flex items-center space-x-3">
-                        <MapPin className="text-[#00C4CC]" size={20} />
+                        <MapPin className="text-primary" size={20} />
                         <div>
-                          <div className="font-medium text-gray-800">Location</div>
-                          <div className="text-sm text-gray-600">{location}</div>
+                          <div className="font-medium text-tdark">Location</div>
+                          <div className="text-xs text-blue-400">{location}</div>
                         </div>
                       </div>
-                      <button className="text-[#00C4CC] text-sm font-medium">
+                      <button className="text-primary text-sm font-medium">
                         Change
                       </button>
                     </div>
 
-                    <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                    <div className="flex items-center justify-between  border border-secondary/10 p-4 rounded-lg">
                       <div className="flex items-center space-x-3">
                         {isAnonymous ? (
-                          <Ghost className="text-[#8E44AD]" size={20} />
+                          <Ghost className="text-primary" size={20} />
                         ) : (
-                          <User className="text-[#00C4CC]" size={20} />
+                          <User className="text-tdark" size={20} />
                         )}
                         <div>
-                          <div className="font-medium text-gray-800">
+                          <div className="font-medium text-tdark">
                             {isAnonymous ? 'Anonymous Post' : 'Public Post'}
                           </div>
-                          <div className="text-sm text-gray-600">
+                          <div className="text-xs text-blue-400">
                             {isAnonymous ? 'Your identity is hidden' : 'Your name will be shown'}
                           </div>
                         </div>
@@ -216,11 +216,13 @@ export function NewPost() {
                         whileTap={{ scale: 0.9 }}
                         onClick={() => setIsAnonymous(!isAnonymous)}
                         className={`w-12 h-6 rounded-full transition-colors ${
-                          isAnonymous ? 'bg-[#8E44AD]' : 'bg-gray-300'
+                          isAnonymous ? 'bg-primary' : 'bg-secondary'
                         }`}
                       >
                         <motion.div
-                          className="w-5 h-5 bg-white rounded-full"
+                          className={`w-5 h-5  rounded-full ${
+                          isAnonymous ? 'bg-secondary' : 'bg-primary'
+                        }`}
                           animate={{ x: isAnonymous ? 28 : 2 }}
                           transition={{ type: "spring", stiffness: 500, damping: 30 }}
                         />
@@ -232,14 +234,14 @@ export function NewPost() {
                     <motion.button
                       whileTap={{ scale: 0.95 }}
                       onClick={() => setStep(2)}
-                      className="flex-1 bg-gray-200 text-gray-700 py-3 rounded-lg font-medium hover:bg-gray-300 transition-colors"
+                      className="flex-1 bg-secondary/20 text-tdark py-3 rounded-lg font-medium transition-colors"
                     >
                       Back
                     </motion.button>
                     <motion.button
                       whileTap={{ scale: 0.95 }}
                       onClick={handlePost}
-                      className="flex-1 bg-gradient-to-r from-[#00C4CC] to-[#8E44AD] text-white py-3 rounded-lg font-medium hover:shadow-lg transition-shadow"
+                      className="flex-1 bg-primary text-tdark text-shadow-black text-shadow-xs py-3 rounded-lg font-medium hover:shadow-lg transition-shadow"
                     >
                       Drop It! 💧
                     </motion.button>

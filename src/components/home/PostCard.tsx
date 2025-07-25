@@ -108,7 +108,7 @@ export function PostCard({
   return (
     <div
 
-      className="bg-light dark:bg-dark border-b-[1px] border-secondary/20 px-4 pt-6 pb-4 shadow-sm "
+      className="bg-light dark:bg-dark border-b-[1px] border-secondary/10  pt-6 pb-4 shadow-sm "
     >
       {/* top row: avatar + category pill */}
       <div className="flex justify-between">
@@ -237,7 +237,7 @@ export function PostCard({
         </button>
       </div>
       <div>
-        <p className="mt-[6px] text-[14px] text-blue-500">#trending #famous #cricet ...</p>
+        <p className="mt-[6px] text-[14px] text-blue-400">#trending #famous #cricet ...</p>
       </div>
     </div>
   )

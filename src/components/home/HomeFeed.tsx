@@ -350,7 +350,7 @@ export function HomeFeed() {
   const handleEcho = (postId: string) => console.log("Echo:", postId);
 
   return (
-    <div className="min-h-screen bg-light dark:bg-dark pt-16 pb-20">
+    <div className="min-h-screen bg-light dark:bg-dark  pb-20">
       {/* Feed toggle buttons */}
       <div className="flex  justify-center mb-2 ">
         <div className="max-w-md px-4 w-full">

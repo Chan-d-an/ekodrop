@@ -27,7 +27,7 @@ export default function AirDropPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#F5FAFF] to-[#E8F4FD]">
+    <div className="min-h-screen bg-dark">
      
       <main className="pt-8 pb-20 px-4">
         <div className="max-w-md mx-auto">
@@ -35,11 +35,11 @@ export default function AirDropPage() {
           <div
             
           >
-            <div className="w-20 h-20 bg-gradient-to-r from-[#00C4CC] to-[#8E44AD] rounded-full flex items-center justify-center mx-auto mb-4">
-              <Zap className="text-white" size={32} />
+            <div className="w-20 h-20 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Zap className="text-primary" size={32} />
             </div>
-            <h1 className="text-2xl font-bold text-gray-800 mb-2">AirDrop</h1>
-            <p className="text-gray-600">Share your presence with nearby users</p>
+            <h1 className="text-2xl font-bold text-tdark mb-2">AirDrop</h1>
+            <p className="text-tdark">Share your presence with nearby users</p>
           </div>
 
           {/* Scan Button */}
@@ -51,10 +51,10 @@ export default function AirDropPage() {
               
               onClick={handleScan}
               disabled={isScanning}
-              className={`w-full py-4 rounded-full font-medium text-lg transition-all ${
+              className={`w-full py-4 rounded-full font-medium text-lg mt-2 transition-all ${
                 isScanning
-                  ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                  : 'bg-gradient-to-r from-[#00C4CC] to-[#8E44AD] text-white hover:shadow-lg'
+                  ? 'border border-secondary/10 text-primary cursor-not-allowed'
+                  : 'border border-secondary/10 text-primary text-shadow-xs text-shadow-black '
               }`}
             >
               {isScanning ? (
@@ -81,8 +81,8 @@ export default function AirDropPage() {
             
           >
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-gray-800">Nearby Users</h2>
-              <span className="text-sm text-gray-500">{nearbyUsers.length} found</span>
+              <h2 className="text-lg font-semibold text-secondary">Nearby Users</h2>
+              <span className="text-sm text-secondary/70">{nearbyUsers.length} found</span>
             </div>
 
             <div className="space-y-3">
@@ -91,39 +91,40 @@ export default function AirDropPage() {
                   <div
                     key={user.id}
                     
-                    className="bg-white rounded-lg p-4 shadow-sm border border-gray-200"
+                    className=" rounded-lg p-4 shadow-sm border mb-2 border-secondary/10"
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-3">
-                        <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
+                        <div className={`w-12 h-12 rounded-full text-tdark flex items-center justify-center ${
                           user.isAnon 
-                            ? 'bg-gradient-to-r from-[#8E44AD] to-[#9B59B6]' 
-                            : 'bg-gradient-to-r from-[#00C4CC] to-[#17A2B8]'
+                            ? '' 
+                            : ''
                         }`}>
                           {user.isAnon ? (
-                            <Ghost className="text-white" size={20} />
+                            <Ghost className="text-tdark text-shadow-xs text-shadow-black" size={20} />
                           ) : (
-                            <User className="text-white" size={20} />
+                            <User className="text-tdark text-shadow-xs text-shadow-black" size={20} />
                           )}
                         </div>
                         <div>
-                          <h3 className="font-medium text-gray-800">{user.name}</h3>
-                          <p className="text-sm text-gray-500">{user.distance}m away</p>
+                          <h3 className="font-medium text-secondary">{user.name}</h3>
+                          <p className="text-sm text-secondary/70">{user.distance}m away</p>
                         </div>
                       </div>
                       
                       <div className="flex space-x-2">
+                        
                         <button
                           
-                          className="px-3 py-1 bg-[#00C4CC] text-white rounded-full text-sm hover:bg-[#00B0B8] transition-colors"
+                          className="px-3 py-1 bg-secondary/10 text-tdark rounded-full text-sm  transition-colors"
                         >
-                          Chat
+                          Share
                         </button>
                         <button
                           
-                          className="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-sm hover:bg-gray-300 transition-colors"
+                          className="px-3 py-1 bg-secondary/10 text-primary rounded-full text-sm  transition-colors"
                         >
-                          Share
+                          Chat
                         </button>
                       </div>
                     </div>

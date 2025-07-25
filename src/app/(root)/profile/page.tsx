@@ -1,163 +1,149 @@
 
 
+import { ThumbsUp, MessageCircle } from "lucide-react";
 
 import { BottomNav } from '@/components/layout/BottomNav';
 import { getSession } from '@/lib/getSession';
 
-import { User, Crown, Zap, MapPin, Clock, Settings } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
+
 
 export default async function ProfilePage() {
   const session = await getSession();
   const user = session?.user;
+const posts = [
+  { 
+    id :"1",
+    date: "07 Jan, 24",
+    title: "Why is gold outpacing the stock market?",
+    likes: 133,
+    comments: 32,
+    image: "https://images.unsplash.com/photo-1519337265831-281ec6cc8514?auto=format&fit=crop&w=600&q=80", // ✅ REPLACED
+  },
+  {
+    id :"2",
+    date: "02 Jan, 24",
+    title: "Gold route map & trading plan update.",
+    likes: 130,
+    comments: 28,
+    image: "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=800&q=80", 
+  
+  },
+  {
+    id :"3",
+    date: "31 Dec, 23",
+    title: "Amazon my plan for 2024.",
+    likes: 150,
+    comments: 45,
+    image: "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=600&q=80",
+  },
+  {
+    id :"4",
+    date: "25 Dec, 23",
+    title: "Why is gold outpacing the stock market?",
+    likes: 100,
+    comments: 20,
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80", // ✅ Loads
+  
+  },
+];
 
-  const userStats = {
-    drops: 23,
-    echoes: 156,
-    reach: 8.5,
-    tier: 'Plus'
-  };
 
-  const recentPosts = [
-    {
-      id: 1,
-      caption: "Just finished my final exam! Time to celebrate 🎉",
-      reach: 2.1,
-      echoes: 15,
-      timeLeft: "18h"
-    },
-    {
-      id: 2,
-      caption: "Late night study session vibes ✨",
-      reach: 3.2,
-      echoes: 28,
-      timeLeft: "4h"
-    }
-  ];
+
+ 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#F5FAFF] to-[#E8F4FD]">
+    <div className="min-h-screen bg-light dark:bg-dark pb-[100px]">
 
-      <main className="py-20 px-4">
-        <div className="max-w-md mx-auto">
-          {/* Profile Header */}
-          <div
+      
+       <main className="p-4 max-w-md mx-auto bg-light dark:bg-dark">
+      {/* Header */}
+      <div className="flex items-center gap-4 mb-4 text-tlight dark:text-tdark">
+        <button className="text-2xl font-medium">{`←`}</button>
+        <h1 className="text-xl font-semibold">My Profile</h1>
+      </div>
 
-            className="bg-white rounded-2xl p-6 shadow-lg mb-6"
-          >
-            <div className="flex items-center space-x-4">
-              <div className="relative">
-                {user?.image ? <Image
+      {/* Profile Card */}
+      <div className=" text-white px-6 py-8 rounded-2xl mb-6 shadow ">
+        <div className="flex items-center mb- ">
+          <div className="inline-block items-center mx-auto ">
+            <div className="flex items-center ">
+              <Image
                   src={user?.image ? user.image : '/icons/profile.jpg'}
                   alt="Profile"
-                  className="rounded-full object-cover border-4 border-white shadow-lg"
+                  className="rounded-full mx-auto object-cover border-4 border-white shadow-lg"
                   width={70}
                   height={70}
-                /> : <div className="w-20 h-20 bg-gradient-to-r from-[#00C4CC] to-[#8E44AD] rounded-full flex items-center justify-center">
-                  <User className="text-white" size={32} />
-                </div>}
-                <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-yellow-400 rounded-full flex items-center justify-center">
-                  <Crown size={14} className="text-white" />
-                </div>
+                /> 
               </div>
-
-              <div className="flex-1">
-                <div className="flex items-center space-x-2">
-                  <h1 className="text-xl font-bold text-gray-800">{user?.name}</h1>
-                  <span className="px-2 py-1 bg-gradient-to-r from-[#00C4CC] to-[#8E44AD] text-white text-xs rounded-full">
-                    {userStats.tier}
-                  </span>
-                </div>
-                <p className="text-gray-600 text-sm mt-1">
-                  Digital nomad | Coffee enthusiast | Late night thinker
-                </p>
-              </div>
-              <Link href={'/profile/settings'} className="px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors">
-                <Settings className="w-4 h-4" />
-              </Link>
+            <div>
+              <h2 className="text-lg font-bold pt-3">John Mobbin</h2>
+              
             </div>
           </div>
-
-          {/* Stats Grid */}
-          <div
-
-            className="grid grid-cols-4 gap-4 mb-6"
-          >
-            <div className="bg-white rounded-lg p-3 text-center shadow-sm">
-              <div className="text-2xl font-bold text-[#00C4CC]">{userStats.drops}</div>
-              <div className="text-xs text-gray-600">Drops</div>
-            </div>
-            <div className="bg-white rounded-lg p-3 text-center shadow-sm">
-              <div className="text-2xl font-bold text-[#8E44AD]">{userStats.echoes}</div>
-              <div className="text-xs text-gray-600">Echoes</div>
-            </div>
-            <div className="bg-white rounded-lg p-3 text-center shadow-sm">
-              <div className="text-2xl font-bold text-[#00C4CC]">{userStats.reach}k</div>
-              <div className="text-xs text-gray-600">Reach</div>
-            </div>
-            <div className="bg-white rounded-lg p-3 text-center shadow-sm">
-              <div className="text-2xl font-bold text-[#8E44AD]">15</div>
-              <div className="text-xs text-gray-600">Chats</div>
-            </div>
+         {/**  <button className="text-sm underline border-[1px] border-green-700">Edit Profile</button>*/}
+        </div>
+        
+        <div className=" grid grid-cols-3 text-center py-6  borderb-[1px] border-gray-700">
+          
+          <div className="border-r-[1px] dark:text-tdark border-gray-700 p p-[4px]">
+            <p className="text-lg font-bold">6</p>
+            <p className="text-xs text-gray-400">Published</p>
           </div>
-
-          {/* Recent Posts */}
-          <div
-
-            className="mb-6"
-          >
-            <h2 className="text-lg font-semibold text-gray-800 mb-4">Recent Drops</h2>
-            <div className="space-y-3">
-              {recentPosts.map((post) => (
-                <div
-                  key={post.id}
-
-                  className="bg-white rounded-lg p-4 shadow-sm border border-gray-200"
-                >
-                  <p className="text-gray-800 mb-3">{post.caption}</p>
-                  <div className="flex items-center justify-between text-sm text-gray-500">
-                    <div className="flex items-center space-x-4">
-                      <div className="flex items-center space-x-1">
-                        <MapPin size={14} />
-                        <span>{post.reach}km</span>
-                      </div>
-                      <div className="flex items-center space-x-1">
-                        <Zap size={14} />
-                        <span>{post.echoes}</span>
-                      </div>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <Clock size={14} />
-                      <span>{post.timeLeft}</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+          <div className="border-r-[1px] border-gray-700 p p-[4px]">
+            <p className="text-lg font-bold">1k</p>
+            <p className="text-xs text-gray-400">Followers</p>
           </div>
-          {/* Upgrade CTA */}
-          <div
-
-            className="bg-gradient-to-r from-[#00C4CC] to-[#8E44AD] rounded-2xl p-6 text-white"
-          >
-            <div className="flex items-center justify-between">
-              <div>
-                <h3 className="text-lg font-bold mb-2">Upgrade to Pro</h3>
-                <p className="text-white/80 text-sm">
-                  Get 15km reach, analytics, and custom avatars
-                </p>
-              </div>
-              <button
-
-                className="bg-white text-[#00C4CC] px-4 py-2 rounded-full font-medium hover:bg-gray-100 transition-colors"
-              >
-                Upgrade
-              </button>
-            </div>
+          <div className="p-[4px]">
+            <p className="text-lg font-bold">100</p>
+            <p className="text-xs text-gray-400">Following</p>
           </div>
         </div>
-      </main>
+        <div>
+          <div className="flex items-center w-full pb-6 border-b-[1px] border-gray-700">
+                <div className="text-md text-gray-400 flex items-center w-full gap-3">
+                  <button className="bg-secondary dark:bg-secondary/10 w-full text-light dark:text-tdark mx-auto rounded-lg py-2 text-center justify-center flex">
+                    Follow
+                  </button>
+                  <button className="bg-secondary dark:bg-secondary/10 w-full text-light dark:text-tdark mx-auto rounded-lg py-2 text-center justify-center flex">
+                    Message
+                  </button>
+                </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Published Ideas */}
+      
+      <div className="">
+        <h2 className="text-lg font-semibold mb-4 text-tlight dark:text-tdark">Published Ideas</h2>
+        <div  className="grid grid-cols-2 gap-0">
+          {posts.map((post) => (
+            <div     key={post.id} className="rounded-xl inline-block overflow-hidden">
+                <div className="">
+                  <Image
+                  src={post.image}
+                  alt="Profile"
+                  className="mx-auto overflow-hidden  object-cover border-4 border-white shadow-lg"
+                  width={200}
+                  height={150}
+                /> 
+                </div>
+                <p className="text-xs text-gray-500">{post.date}</p>
+                <p className="text-sm font-semibold mt-1 mb-2 leading-tight">{post.title}</p>
+                <div className="flex gap-3 text-xs text-gray-500">
+                <span className="flex items-center gap-1">
+                  <ThumbsUp size={14} /> ({post.likes})
+                </span>
+                <span className="flex items-center gap-1">
+                  <MessageCircle size={14} /> ({post.comments})
+                </span>
+              </div>
+            </div>))}
+        </div>
+      </div>
+    </main>
       <BottomNav />
     </div>
   );

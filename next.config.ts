@@ -31,6 +31,16 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'images.pexels.com',
       },
+      
+      {
+        protocol: 'https',
+        hostname: 'via.placeholder.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.pravatar.cc',
+      },
+
     ],
     domains: [
       'images.pexels.com',
@@ -39,6 +49,8 @@ const nextConfig = {
       'placehold.net',
       'placehold.co',
       'cdn.pixabay.com',
+      'via.placeholder.com',
+      'i.pravatar.cc'
     ],
   },
 };

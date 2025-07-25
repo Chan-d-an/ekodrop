@@ -5,9 +5,11 @@ export default function Home() {
 
 
   return (
-    <div className='dark light'>
+    <div className='dark '>
       <Header />
-      <HomeFeed />
+      <div className='pt-16 px-4 bg-dark'>
+          <HomeFeed />
+      </div>
       <BottomNav />
     </div>
   );
