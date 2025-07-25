@@ -1,8 +1,3 @@
-const withPWA = require('next-pwa')({
-  dest: 'public',
-  disable: process.env.NODE_ENV === 'development',
-});
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -31,7 +26,6 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'images.pexels.com',
       },
-      
       {
         protocol: 'https',
         hostname: 'via.placeholder.com',
@@ -40,7 +34,6 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'i.pravatar.cc',
       },
-
     ],
     domains: [
       'images.pexels.com',
@@ -55,4 +48,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withPWA(nextConfig);
+module.exports = nextConfig;
