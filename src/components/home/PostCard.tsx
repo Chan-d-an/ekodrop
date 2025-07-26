@@ -201,7 +201,7 @@ export function PostCard({
           animate={{ y: 0 }}
           exit={{ y: '100%' }}
           transition={{ type: 'spring', stiffness: 80 }}
-          className="fixed inset-0 z-50 bg-dark text-tdark max-w-md w-full mx-auto overflow-y-auto rounded-t-xl"
+          className="fixed inset-0 z-50 bg-dark mt-[300px] text-tdark max-w-md w-full mx-auto overflow-y-auto rounded-t-xl"
           ref={commentSectionRef}
         >
           <div className="w-full flex justify-center py-2">
@@ -249,7 +249,7 @@ export function PostCard({
           </div>
 
           {/* Input Area with Anon Toggle */}
-          <div className="fixed bottom-0 w-full max-w-md bg-dark border-t border-neutral-700 p-3">
+          <div className="fixed bottom-0 w-full mb-[120px] max-w-md bg-dark border-t border-neutral-700 p-3">
             <div className="flex items-center justify-between mb-2 text-sm text-gray-300">
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
