@@ -11,6 +11,8 @@ import {
   Heart,
   MoreVertical,
   Send,
+  Bookmark,
+  Flag
 } from 'lucide-react'
 import { Post } from '@/types/types'
 
@@ -30,6 +32,9 @@ export function PostCard({
   const [downvoted, setDownvoted] = useState(false)
   const [showComments, setShowComments] = useState(false)
   const [newComment, setNewComment] = useState("")
+  const [showDropdown, setShowDropdown] = useState(false)
+const dropdownRef = useRef<HTMLDivElement>(null)
+
   const [postAnon, setPostAnon] = useState(true) // <-- Added
   const [comments, setComments] = useState([
     {
@@ -102,6 +107,22 @@ export function PostCard({
       })
     )
   }
+ 
+  useEffect(() => {
+  function handleClickOutside(e: MouseEvent) {
+    if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+      setShowDropdown(false)
+    }
+  }
+
+  if (showDropdown) {
+    document.addEventListener("mousedown", handleClickOutside)
+  }
+
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside)
+  }
+}, [showDropdown])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -127,7 +148,7 @@ export function PostCard({
   }, [showComments])
 
   return (
-    <div className="bg-light dark:bg-dark border-b border-secondary/10 pt-6 pb-4 shadow-sm max-w-md mx-auto">
+    <div className="bg-light dark:bg-dark border-b px-4 border-secondary/10 pt-6 pb-4 shadow-sm max-w-md mx-auto">
       {/* Top Row */}
       <div className="flex justify-between">
         <div className="flex items-start">
@@ -150,9 +171,38 @@ export function PostCard({
             </div>
           </div>
         </div>
-        <button className="mt-2 mr-1">
-          <MoreVertical size={20} className="text-tlight dark:text-tdark" />
-        </button>
+        <div className="relative">
+  <button onClick={() => setShowDropdown(prev => !prev)} className="mt-2 mr-1">
+    <MoreVertical size={20} className="text-tlight dark:text-tdark" />
+  </button>
+
+  {showDropdown && (
+    <div
+      ref={dropdownRef}
+      className="absolute right-0 mt-2 w-40 bg-dark text-tdark shadow-lg rounded-lg  z-50 border border-neutral-700"
+    >
+      <button
+        onClick={() => {
+          setShowDropdown(false)
+          alert("Post saved!") // Replace with real logic
+        }}
+        className="w-full px-4 pt-3 pb-2 hover:bg-neutral-800 flex items-center gap-2 text-sm rounded-t-lg"
+      >
+        <Bookmark size={16} /> Save Post
+      </button>
+      <button
+        onClick={() => {
+          setShowDropdown(false)
+          alert("Reported!") // Replace with real logic
+        }}
+        className="w-full px-4 pb-3 pt-2 hover:bg-neutral-800 flex items-center gap-2 text-sm rounded-b-lg text-red-400"
+      >
+        <Flag size={16} /> Report Post
+      </button>
+    </div>
+  )}
+</div>
+
       </div>
 
       {/* Caption */}
@@ -196,51 +246,71 @@ export function PostCard({
 
       {/* Comments Section */}
       {showComments && (
-        <motion.div
-          initial={{ y: '100%' }}
-          animate={{ y: 0 }}
-          exit={{ y: '100%' }}
-          transition={{ type: 'spring', stiffness: 80 }}
-          className="fixed inset-0 z-50 bg-dark mt-[150px] mb-[300px] text-tdark max-w-md w-full mx-auto overflow-y-auto rounded-t-xl"
-          ref={commentSectionRef}
-        >
-          <div className="w-full flex justify-center py-2">
-            <div className="h-1.5 w-14 rounded-full bg-neutral-600" />
-          </div>
+  <div className="fixed inset-0 z-50  flex justify-center items-end ">
+    {/* BACKDROP */}
+    <div
+      className="absolute inset-0 bg-transparent bg-opacity-50"
+      onClick={() => setShowComments(false)}
+    />
 
-          <div className="px-4 pb-24 pt-2 space-y-4">
+    {/* COMMENT PANEL */}
+    <motion.div
+      initial={{ y: '100%' }}
+      animate={{ y: 0 }}
+      exit={{ y: '100%' }}
+      transition={{ type: 'spring', stiffness: 80 }}
+      className="relative z-10 bg-dark mt-[150px] bottom-0 max-h-[70vh] text-tdark max-w-md w-full mx-auto overflow-y-auto rounded-t-xl"
+      ref={commentSectionRef}
+    >
+
+          
+        <motion.div
+  drag="y"
+  dragConstraints={{ top: 0, bottom: 0 }}
+  onDragEnd={(_, info) => {
+    if (info.offset.y > 5) {
+      setShowComments(false)
+    }
+  }}
+  className="w-full flex justify-center py-2 cursor-pointer"
+>
+  <div className="h-1.5 w-14 rounded-full bg-secondary/10" />
+</motion.div>
+
+          <div className="px-4 pb-82 pt-2 space-y-4">
             <h3 className="text-lg font-semibold mb-2">Comments</h3>
             {comments.map((comment, index) => (
               <div key={index} className="flex items-start gap-3 bg-dark p-3 rounded-lg text-tdark">
                 <div className="shrink-0">
                   {comment.isAnonymous ? (
-                    <Ghost className="w-8 h-8 text-gray-400" />
+                    <Ghost className="w-6 h-6 mt-1 text-gray-400" />
                   ) : (
-                    <Image
+                    <img
                       src={comment.userImage}
                       alt="Profile"
-                      className="w-8 h-8 rounded-full object-cover"
-                      
+                      className="w-6 h-6 mt-1 rounded-full object-cover"
+                      width={24}
+                      height={24}
                     />
                   )}
                 </div>
                 <div className="flex-1">
                   <div className="flex justify-between mb-1">
-                    <span className="text-sm font-semibold">
+                    <span className="text-sm font-semibold text-tdark">
                       {comment.isAnonymous ? "Anonymous" : comment.username}
                     </span>
-                    <span className="text-xs text-gray-400">{comment.time}</span>
+                    <span className="text-xs text-tdark/70">{comment.time}</span>
                   </div>
-                  <p className="text-sm mb-2">{comment.text}</p>
-                  <div className="flex gap-4 text-xs text-gray-400">
+                  <p className="text-sm mb-2 text-tdark">{comment.text}</p>
+                  <div className="flex gap-4 text-xs text-tdark/30">
                     <button
                       onClick={() => toggleCommentLike(index)}
-                      className={`flex items-center gap-1 transition-colors ${comment.liked ? "text-pink-500" : "hover:text-white"}`}
+                      className={`flex items-center gap-1 transition-colors ${comment.liked ? "text-primary" : "hover:text-primary"}`}
                     >
-                      <Heart className={`w-4 h-4 ${comment.liked ? "fill-pink-500" : ""}`} />
+                      <Heart className={`w-4 h-4 ${comment.liked ? "fill-primary" : ""}`} />
                       {comment.likesCount}
                     </button>
-                    <button className="flex items-center gap-1 hover:text-white">
+                    <button className="flex items-center gap-1 ">
                       <MessageCircle className="w-4 h-4" /> Reply
                     </button>
                   </div>
@@ -250,14 +320,14 @@ export function PostCard({
           </div>
 
           {/* Input Area with Anon Toggle */}
-          <div className="fixed bottom-0 w-full mb-[70px] max-w-md bg-dark border-t border-neutral-700 p-3">
-            <div className="flex items-center justify-between mb-2 text-sm text-gray-300">
+          <div className="fixed bottom-0 w-full mb-[55px] max-w-md bg-dark border-t border-secondary/10 p-3">
+            <div className="flex items-center justify-between mb-2 text-sm text-tdark">
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="checkbox"
                   checked={postAnon}
                   onChange={() => setPostAnon(prev => !prev)}
-                  className="accent-teal-500"
+                  className="accent-primary"
                 />
                 Post as Anonymous
               </label>
@@ -268,18 +338,21 @@ export function PostCard({
                 value={newComment}
                 onChange={(e) => setNewComment(e.target.value)}
                 placeholder="Write a comment..."
-                className="flex-1 p-2 rounded bg-neutral-800 text-white focus:outline-none focus:ring-2 focus:ring-teal-400"
+                className="flex-1 p-2 rounded bg-secondary/10 text-tdark focus:outline-none focus:ring-1 focus:ring-primary"
               />
               <button
                 onClick={handlePostComment}
-                className="bg-teal-500 text-white px-4 py-2 rounded hover:bg-teal-600"
+                className="bg-primary text-shadow-black text-shadow-xs  text-tdark px-4 py-2 rounded "
               >
-                Post
+                Drop
               </button>
             </div>
           </div>
-        </motion.div>
-      )}
+             </motion.div>
+    </div>
+)}
+
+      
     </div>
   )
 }

@@ -45,7 +45,7 @@ export function Header() {
 
           className="fixed top-0 left-0 right-0 bg-light dark:bg-dark backdrop-blur-lg z-50"
         >
-          <div className="flex justify-between items-center px-4 py-3 max-w-md mx-auto relative">
+          <div className="flex justify-between items-center  px-4 py-3 max-w-md mx-auto relative">
             {/* Left: Logo + Dropdown */}
             <div className="relative">
               <div

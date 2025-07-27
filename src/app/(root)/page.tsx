@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className='dark '>
       <Header />
-      <div className='pt-16 px-4 bg-dark'>
+      <div className='pt-16  bg-dark'>
           <HomeFeed />
       </div>
       <BottomNav />

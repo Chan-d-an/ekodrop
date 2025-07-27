@@ -353,7 +353,7 @@ export function HomeFeed() {
     <div className="min-h-screen bg-light dark:bg-dark  pb-20">
       {/* Feed toggle buttons */}
       <div className="flex  justify-center mb-2 ">
-        <div className="max-w-md px-4 w-full">
+        <div className="max-w-md px-3 w-full">
         <div className="flex bg-secondary dark:bg-secondary/10 justify-between p-1 max-w-md rounded-xl bg-  w-full shadow-sm">
           {["Blend", "Anonmous", "Real"].map((type) => (
             <button
