@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import {
   Bell,
-  Droplet,
+
   Settings
 } from "lucide-react";
 

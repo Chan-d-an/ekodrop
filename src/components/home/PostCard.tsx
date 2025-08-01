@@ -285,7 +285,7 @@ const dropdownRef = useRef<HTMLDivElement>(null)
                   {comment.isAnonymous ? (
                     <Ghost className="w-6 h-6 mt-1 text-gray-400" />
                   ) : (
-                    <img
+                    <Image
                       src={comment.userImage}
                       alt="Profile"
                       className="w-6 h-6 mt-1 rounded-full object-cover"
