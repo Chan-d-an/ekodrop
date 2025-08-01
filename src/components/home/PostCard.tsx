@@ -148,7 +148,7 @@ const dropdownRef = useRef<HTMLDivElement>(null)
   }, [showComments])
 
   return (
-    <div className="bg-light dark:bg-dark border-b px-4 border-secondary/10 pt-6 pb-4 shadow-sm max-w-md mx-auto">
+    <div className="+bg-dark border-b px-4 border-secondary/10 pt-6 pb-4 shadow-sm max-w-md mx-auto">
       {/* Top Row */}
       <div className="flex justify-between">
         <div className="flex items-start">
@@ -162,9 +162,9 @@ const dropdownRef = useRef<HTMLDivElement>(null)
               />
             )}
           </div>
-          <div className="text-tlight dark:text-tdark ml-3">
+          <div className="text-tdark ml-3">
             <div className='text-[16px] font-semibold'>{post.uid}</div>
-            <div className='flex text-[12px] text-tlight dark:text-tdark/70'>
+            <div className='flex text-[12px] text-tdark/70'>
               <div>15 min ago</div>
               <p className='mx-1'>|</p>
               <div>{category}</div>

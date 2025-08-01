@@ -21,13 +21,13 @@ const [isFollowing, setIsFollowing] = useState(false);
           
           <div
             
-            className="relative mb-4 bg-secondary dark:bg-secondary/10 rounded-full text-tlight dark:text-tdark"
+            className="relative mb-4 bg-secondary/10 rounded-full text-tdark"
           >
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-tlight dark:text-tdark/30" size={20} />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-tdark/30" size={20} />
             <input
               type="text"
               placeholder="Search drops, topics, or locations..."
-              className=" w-full pl-10 pr-4 py-3 bg-secondary dark:bg-secondary/10 border border-secondary/10 rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent shadow-sm"
+              className=" w-full pl-10 pr-4 py-3 bg-secondary/10 border border-secondary/10 rounded-full focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent shadow-sm"
             />
           </div>
           
@@ -35,7 +35,7 @@ const [isFollowing, setIsFollowing] = useState(false);
       <div className="inline-flex gap-2 mb-4">
         <button
           onClick={() => setActiveTab("posts")}
-          className={`text-xs py-1 px-3 rounded-xl border bg-secondary dark:bg-secondary/20 text-light dark:text-tdark ${
+          className={`text-xs py-1 px-3 rounded-xl border bg-secondary/20 text-tdark ${
             activeTab === "posts" ? "border-[#72ff50]" : ""
           }`}
         >
@@ -43,7 +43,7 @@ const [isFollowing, setIsFollowing] = useState(false);
         </button>
         <button
           onClick={() => setActiveTab("users")}
-          className={`text-xs py-1 px-3 rounded-xl border bg-secondary dark:bg-secondary/20 text-light dark:text-tdark ${
+          className={`text-xs py-1 px-3 rounded-xl border bg-secondary/20 text-tdark ${
             activeTab === "users" ? "border-[#72ff50]" : ""
           }`}
         >

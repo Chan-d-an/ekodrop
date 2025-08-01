@@ -18,8 +18,8 @@ const NavItem = ({ icon: Icon,  isActive, onClick }: {
     onClick={onClick}
     className={`flex  flex-col items-center justify-center p-2 rounded-lg transition-all duration-200 ${
       isActive 
-        ? 'text-tlight dark:text-tdark bg-primary' 
-        : 'text-tlight dark:text-tdark hover:text-primary hover:bg-secondary/10'
+        ? 'text-tdak  text-primary b-secondary/10 ' 
+        : 'text-tdark'
     }`}
   >
     <Icon size={24} className={isActive ? 'drop-shadow-sm' : ''} />
@@ -45,7 +45,7 @@ export function BottomNav() {
   return (
     <div
       
-      className="fixed bottom-0 left-0 right-0 bg-light dark:bg-dark backdrop-blur-lg border-t border-secondary dark:border-secondary/20 z-50"
+      className="fixed bottom-0 left-0 right-0 bg-dark backdrop-blur-lg border-t border-secondary/20 z-50"
     >
       <div className="flex justify-around items-center px-4 py-2 max-w-md mx-auto">
         {navItems.map((item) => (

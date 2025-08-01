@@ -28,9 +28,9 @@ export function SignOutButton({ handleSignOut }: SignOutButtonProps) {
       type="button"
       onClick={handleClick}
       disabled={isLoading}
-      className={`w-full flex items-center gap-2 px-3 py-2 text-sm font-medium text-slate-700 rounded-md transition-all duration-200 ${isLoading
-          ? "bg-slate-50 cursor-not-allowed opacity-60"
-          : "hover:bg-cyan-50 hover:text-cyan-700 active:bg-cyan-100"
+      className={`w-full flex items-center gap-2 px-3 py-2 text-lg  rounded-md transition-all duration-200 ${isLoading
+          ? "text-tdark border border-secondary/10 hover:bg-secondary/10"
+          : "text-tdark border border-secondary/10 hover:bg-secondary/10"
         }`}
       aria-label={isLoading ? "Signing out" : "Sign out"}
     >
@@ -60,7 +60,7 @@ export function SignOutButton({ handleSignOut }: SignOutButtonProps) {
         </span>
       ) : (
         <span className="flex items-center gap-2">
-          <LogOut className="h-4 w-4 text-slate-500 group-hover:text-cyan-700" />
+          <LogOut size={22} className="text-tdark" />
           Sign out
         </span>
       )}

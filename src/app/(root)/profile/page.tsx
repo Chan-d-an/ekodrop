@@ -1,10 +1,10 @@
 
 
-import { ThumbsUp, MessageCircle } from "lucide-react";
+import { ThumbsUp, MessageCircle,Settings } from "lucide-react";
 
 import { BottomNav } from '@/components/layout/BottomNav';
 import { getSession } from '@/lib/getSession';
-
+import Link from "next/link";
 import Image from 'next/image';
 
 
@@ -58,13 +58,19 @@ const posts = [
       
        <main className="p-4 max-w-md mx-auto bg-light dark:bg-dark">
       {/* Header */}
-      <div className="flex items-center gap-4 mb-4 text-tlight dark:text-tdark">
-        <button className="text-2xl font-medium">{`←`}</button>
+      <div className="flex justify-between items-center gap-4 mb-4 text-tlight dark:text-tdark">
+        {/*<button className="text-2xl font-medium"><-</button>*/}
         <h1 className="text-xl font-semibold">My Profile</h1>
+        <Link href={'/profile/settings'}
+
+              className="p-2 rounded-full transition-colors"
+            >
+              <Settings size={20} className="text-tlight dark:text-tdark" />
+            </Link>
       </div>
 
       {/* Profile Card */}
-      <div className=" text-white px-6 py-8 rounded-2xl mb-6 shadow ">
+      <div className=" text-white  py-6 rounded-2xl mb-6 shadow ">
         <div className="flex items-center mb- ">
           <div className="inline-block items-center mx-auto ">
             <div className="flex items-center ">

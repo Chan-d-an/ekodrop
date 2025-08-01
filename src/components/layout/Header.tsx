@@ -6,7 +6,7 @@ import {
   Droplet,
   Settings
 } from "lucide-react";
-import { motion } from "framer-motion";
+
 import Link from "next/link";
 
 
@@ -51,14 +51,9 @@ export function Header() {
               <div
                 className="flex items-center space-x-2 focus:outline-none"
               >
-              <Link href={'/'} className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                <motion.div
-                  animate={{ rotate: 360 }}
-
-                >
-                  <Droplet className="w-5 h-5 text-tlight dark:text-tdark" />
-                </motion.div>
-              </Link>
+              
+                  <h1 className="text-xl text-tdark">Ekodrop</h1>
+                
              <button className="inline-flex items-center"
                >  {/*<span className="text-xl font-bold bg-primary bg-clip-text text-transparent">
                 EkoDrop

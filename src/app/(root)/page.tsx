@@ -5,7 +5,7 @@ export default function Home() {
 
 
   return (
-    <div className='dark '>
+    <div className=' '>
       <Header />
       <div className='pt-16  bg-dark'>
           <HomeFeed />
