@@ -148,7 +148,7 @@ const dropdownRef = useRef<HTMLDivElement>(null)
   }, [showComments])
 
   return (
-    <div className="+bg-dark border-b px-4 border-secondary/10 pt-6 pb-4 shadow-sm max-w-md mx-auto">
+    <div className="+bg-dark border-b px-4 border-secondary/5 pt-6 pb-4 shadow-sm max-w-md mx-auto">
       {/* Top Row */}
       <div className="flex justify-between">
         <div className="flex items-start">
@@ -206,7 +206,7 @@ const dropdownRef = useRef<HTMLDivElement>(null)
       </div>
 
       {/* Caption */}
-      <p className="mt-4 text-tlight dark:text-tdark text-[16px] leading-relaxed">
+      <p className="mt-4 text-tdark text-[16px] leading-relaxed bg-secondary/10 py-2 px-4 rounded-lg ">
         {post.caption}
       </p>
 
@@ -310,9 +310,9 @@ const dropdownRef = useRef<HTMLDivElement>(null)
                       <Heart className={`w-4 h-4 ${comment.liked ? "fill-primary" : ""}`} />
                       {comment.likesCount}
                     </button>
-                    <button className="flex items-center gap-1 ">
+                   {/* <button className="flex items-center gap-1 ">
                       <MessageCircle className="w-4 h-4" /> Reply
-                    </button>
+                    </button>*/}
                   </div>
                 </div>
               </div>

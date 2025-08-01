@@ -52,7 +52,7 @@ export function Header() {
                 className="flex items-center space-x-2 focus:outline-none"
               >
               
-                  <h1 className="text-xl text-tdark">Ekodrop</h1>
+                  <h1 className="text-xl font-semibold text-tdark tracking-wider">Ekodrop</h1>
                 
              <button className="inline-flex items-center"
                >  {/*<span className="text-xl font-bold bg-primary bg-clip-text text-transparent">

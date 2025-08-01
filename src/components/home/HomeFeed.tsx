@@ -350,17 +350,17 @@ export function HomeFeed() {
   const handleEcho = (postId: string) => console.log("Echo:", postId);
 
   return (
-    <div className="min-h-screen bg-light dark:bg-dark  pb-20">
+    <div className="min-h-screen bg-dark  pb-20">
       {/* Feed toggle buttons */}
       <div className="flex  justify-center mb-2 ">
         <div className="max-w-md px-3 w-full">
-        <div className="flex bg-secondary dark:bg-secondary/10 justify-between p-1 max-w-md rounded-xl bg-  w-full shadow-sm">
+        <div className="flex bg-secondary/10 justify-between p-1 max-w-md rounded-xl   w-full shadow-sm">
           {["Blend", "Anonmous", "Real"].map((type) => (
             <button
               key={type}
               onClick={() => setFeedType(type as typeof feedType)}
               className={`px-4 py-1 text-sm font-semibold rounded-full transition flex items-center gap-1 ${
-                feedType === type ? "bg-light dark:bg-light text-tlight dark:tdark shadow" : "text-tlight/70 dark:text-tdark/70"
+                feedType === type ? "bg-light text-tlight shadow" : "text-tdark/70"
               }`}
             >
               {type === "Blend" && <Infinity className="w-4 h-4" />}

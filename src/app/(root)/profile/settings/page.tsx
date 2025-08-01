@@ -1,11 +1,14 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
+import { BottomNav } from '@/components/layout/BottomNav';
 import { handleSignOut } from '@/actions/user'
 import { SignOutButton } from '@/components/auth/SignOutButton'
-import { UserRoundPen, Moon, Bell, ChevronRight } from 'lucide-react'
+import { UserRoundPen, Moon, Bell, ChevronRight ,ArrowLeft } from 'lucide-react'
 import React, { useState } from 'react'
 
 export default function Page() {
+    const router = useRouter()
   const [isDarkMode, setIsDarkMode] = useState(true)
 
  const toggleDarkMode = () => {
@@ -18,8 +21,11 @@ export default function Page() {
   return (
     <div className='dark:bg-dark bg-light text-tdark min-h-screen'>
       <div className='p-4  mx-auto max-w-lg w-full'>
-        <div className='pb-4'>
-          <h1 className="text-xl font-semibold">Setting</h1>
+        <div className='pb-4 flex'  >
+          <div className=''>
+              <ArrowLeft size={22} onClick={() => router.push('/')}/>
+          </div>
+          <h1 className="text-xl font-semibold tracking-wider leading-none pl-4">Settings</h1>
         </div>
 
         <div className='p-4 border-secondary/10 border-[1px] rounded-lg my-4'>
@@ -66,6 +72,8 @@ export default function Page() {
           <SignOutButton handleSignOut={handleSignOut} />
         </div>
       </div>
+      
+      <BottomNav />
     </div>
   )
 }
