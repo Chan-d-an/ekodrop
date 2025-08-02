@@ -60,7 +60,7 @@ const posts = [
       {/* Header */}
       <div className="flex justify-between items-center gap-4 mb-4 text-tlight dark:text-tdark">
         {/*<button className="text-2xl font-medium"><-</button>*/}
-        <h1 className="text-xl font-semibold">My Profile</h1>
+        <h1 className="text-xl font-semibold">@loremkp59</h1>
         <Link href={'/profile/settings'}
 
               className="p-2 rounded-full transition-colors"
@@ -70,41 +70,64 @@ const posts = [
       </div>
 
       {/* Profile Card */}
-      <div className=" text-white  py-6 rounded-2xl mb-6 shadow ">
-        <div className="flex items-center mb- ">
-          <div className="inline-block items-center mx-auto ">
-            <div className="flex items-center ">
+      <div className=" text-white  py-6 rounded-2xl mb-6 shadow text-tdark">
+        <div className=" ">
+          <div className="flex  px-2">
+            <div className="w">
+              <div className="">
               <Image
                   src={user?.image ? user.image : '/icons/profile.jpg'}
                   alt="Profile"
-                  className="rounded-full mx-auto object-cover border-4 border-white shadow-lg"
-                  width={70}
-                  height={70}
+                  className="rounded-full min-h-[100px] min-w-[100px] mx-auto object-cover border-4 border-white shadow-lg"
+                  width={100}
+                  height={100}
                 /> 
+                </div>
               </div>
-            <div>
-              <h2 className="text-lg font-bold pt-3">John Mobbin</h2>
+            <div className="mx-auto ml-6 inline-block ">
+              <h2 className=" font-bold  text-3xl">John Mobbin</h2>
               
+              <div className="flex flex-wrap gap-2 my-2">
+                  <p className="px-3 py-1 text-xs bg-secondary/20 rounded-lg">Dancing</p>
+                  <p className="px-3 py-1 text-xs bg-secondary/20 rounded-lg">Study</p>
+                  <p className="px-3 py-1 text-xs bg-secondary/20 rounded-lg">Study</p>
+                  <p className="px-3 py-1 text-xs bg-secondary/20 rounded-lg">Dancing</p>
+                  <p className="px-3 py-1 text-xs bg-secondary/20 rounded-lg">Dancing</p>
+                  <p className="px-3 py-1 text-xs bg-secondary/20 rounded-lg">Study</p>
+                  <p className="px-3 py-1 text-xs bg-secondary/20 rounded-lg">Study</p>
+                  <p className="px-3 py-1 text-xs bg-secondary/20 rounded-lg">Dancing</p>
+                  <p className="px-3 py-1 text-xs bg-secondary/20 rounded-lg">Dancing</p>
+                  <p className="px-3 py-1 text-xs bg-secondary/20 rounded-lg">Dancing</p>
+                  <p className="px-3 py-1 text-xs bg-secondary/20 rounded-lg">Study</p>
+                  <p className="px-3 py-1 text-xs bg-secondary/20 rounded-lg">Study</p>
+                  <p className="px-3 py-1 text-xs bg-secondary/20 rounded-lg">Dancing</p>
+                  
+                  
+                 
+              </div>
             </div>
-          </div>
+             </div>
+              <p className="text-sm text-tdark mt-2">Lorem ipsum dolor sit,gu amet consectetur adipisicing elit. Id nihil,gv vero maxime ratione, quaerat voluptas nostrum ea doloribus magnam saepe aliquam sequi numquam eveniet harum nisi dolores rem?</p>
+        
          {/**  <button className="text-sm underline border-[1px] border-green-700">Edit Profile</button>*/}
         </div>
         
-        <div className=" grid grid-cols-3 text-center py-6  borderb-[1px] border-gray-700">
+        <div className=" grid grid-cols-3 text-center py-6 border-b-[1px] border-gray-700 borderb-[1px] border-gray-700">
           
           <div className="border-r-[1px] dark:text-tdark border-gray-700 p p-[4px]">
             <p className="text-lg font-bold">6</p>
-            <p className="text-xs text-gray-400">Published</p>
+            <p className="text-xs text-tdark/60">Published</p>
           </div>
           <div className="border-r-[1px] border-gray-700 p p-[4px]">
             <p className="text-lg font-bold">1k</p>
-            <p className="text-xs text-gray-400">Followers</p>
+            <p className="text-xs text-tdark/60">Followers</p>
           </div>
           <div className="p-[4px]">
             <p className="text-lg font-bold">100</p>
-            <p className="text-xs text-gray-400">Following</p>
+            <p className="text-xs text-tdark/60">Following</p>
           </div>
         </div>
+        {/** Action Buttons
         <div>
           <div className="flex items-center w-full pb-6 border-b-[1px] border-gray-700">
                 <div className="text-md text-gray-400 flex items-center w-full gap-3">
@@ -117,7 +140,7 @@ const posts = [
                 </div>
           </div>
 
-        </div>
+        </div> */}
       </div>
 
       {/* Published Ideas */}
