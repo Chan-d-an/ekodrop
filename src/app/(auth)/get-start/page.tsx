@@ -2,12 +2,14 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function GetStarted() {
   const helloBuddy = "Hello Buddy".split("");
   const welcomeLine = "Welcome in Ekodrop".split("");
 
   const [showWelcome, setShowWelcome] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const timeout = setTimeout(() => setShowWelcome(true), 2500);
@@ -15,7 +17,7 @@ export default function GetStarted() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] flex flex-col items-center justify-center text-white px-4">
+    <div className="min-h-screen bg-black bg-[radial-gradient(#202020_1px,transparent_1px)] [background-size:20px_20px] flex flex-col items-center justify-center text-white px-4">
 
       {/* Animated Word Section */}
       <div className="h-24 flex items-center justify-center overflow-hidden">
@@ -90,10 +92,16 @@ export default function GetStarted() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 5, duration: 0.8 }}
       >
-        <button className="bg-[#72ff50] text-black px-6 py-2 rounded-full font-medium hover:bg-green-400 transition-all">
+        <button
+          onClick={() => router.push("/sign-in")}
+          className="bg-[#72ff50] text-black px-6 py-2 rounded-full font-medium hover:bg-green-400 transition-all"
+        >
           Get Started
         </button>
-        <button className="border border-white px-6 py-2 rounded-full font-medium hover:bg-white hover:text-black transition-all">
+        <button
+          onClick={() => router.push("/sign-up")}
+          className="border border-white px-6 py-2 rounded-full font-medium hover:bg-white hover:text-black transition-all"
+        >
           Sign Up
         </button>
       </motion.div>
