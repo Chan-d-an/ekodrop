@@ -18,9 +18,10 @@ export default async function Login() {
     redirect("/");
   }
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-4 sm:p-8">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 transition-all duration-300 hover:shadow-2xl">
-        <div className="flex justify-center mb-8">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center  ">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 transition-all duration-300 hover:shadow-2xl 
+      ">
+        <div className="flex justify-center mb-8 ">
           <div className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center relative overflow-hidden">
             <div className="text-white text-3xl animate-pulse">💧</div>
             <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/30 to-purple-400/30 animate-gradient"></div>

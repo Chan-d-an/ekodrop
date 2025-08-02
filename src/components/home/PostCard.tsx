@@ -148,7 +148,7 @@ const dropdownRef = useRef<HTMLDivElement>(null)
   }, [showComments])
 
   return (
-    <div className="+bg-dark border-b px-4 border-secondary/5 pt-6 pb-4 shadow-sm max-w-md mx-auto">
+    <div className="bg-dark  px-4 border-secondary/5 pt-6 pb-4 shadow-sm max-w-md mx-auto">
       {/* Top Row */}
       <div className="flex justify-between">
         <div className="flex items-start">
@@ -222,7 +222,7 @@ const dropdownRef = useRef<HTMLDivElement>(null)
       )}
 
       {/* Actions */}
-      <div className="mt-4 flex justify-between text-tlight dark:text-tdark">
+      <div className="mt-4 flex justify-between text-tdark">
         <div className="flex items-center space-x-6 text-sm">
           <motion.button whileTap={{ scale: 0.9 }} onClick={handleUpvote} className="flex items-center space-x-1">
             <ArrowUp size={24} className={upvoted ? 'fill-primary text-primary' : ''} />
@@ -238,7 +238,7 @@ const dropdownRef = useRef<HTMLDivElement>(null)
           </motion.button>
         </div>
         <button>
-          <Send size={24} className="text-tlight dark:text-tdark" />
+          <Send size={24} className="text-tdark" />
         </button>
       </div>
 
