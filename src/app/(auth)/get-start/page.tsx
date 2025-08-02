@@ -24,27 +24,36 @@ export default function GetStarted() {
     return () => clearTimeout(timeout);
   }, []);
 
-  const handleEmojiClick = (id, x, y) => {
-  const baseX = parseFloat(x);
-  const baseY = parseFloat(y);
-  const newEmojis = Array.from({ length: Math.floor(Math.random() * 4) + 2 }).map((_, i) => {
-    const offsetX = (Math.random() - 0.5) * 10; // +/-5%
-    const offsetY = (Math.random() - 0.5) * 10; // +/-5%
-    return {
-      id: Date.now() + i,
-      emoji: EMOJIS[Math.floor(Math.random() * EMOJIS.length)],
-      x: `${Math.min(95, Math.max(0, baseX + offsetX))}%`,
-      y: `${Math.min(95, Math.max(0, baseY + offsetY))}%`,
-    };
-  });
-  setFloatingEmojis(prev => [...prev, ...newEmojis]);
-};
+  const handleEmojiClick = (id: number, x: string, y: string) => {
+    const baseX = parseFloat(x);
+    const baseY = parseFloat(y);
+
+    const newEmojis = Array.from({ length: Math.floor(Math.random() * 4) + 2 }).map((_, i) => {
+      const angle = Math.random() * 2 * Math.PI;
+      const distance = 10 + Math.random() * 70; // Spread area
+
+      const offsetX = Math.cos(angle) * distance;
+      const offsetY = Math.sin(angle) * distance;
+
+      const newX = Math.min(95, Math.max(0, baseX + offsetX));
+      const newY = Math.min(95, Math.max(0, baseY + offsetY));
+
+      return {
+        id: Date.now() + i + Math.random(),
+        emoji: EMOJIS[Math.floor(Math.random() * EMOJIS.length)],
+        x: `${newX}%`,
+        y: `${newY}%`,
+      };
+    });
+
+    setFloatingEmojis(prev => [...prev, ...newEmojis]);
+  };
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-black bg-[conic-gradient(at_top_left,_#0f0c29,_#302b63,_#24243e)] flex flex-col items-center justify-center text-white px-4">
+    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] flex flex-col items-center justify-center text-white px-4">
       {/* Floating Emojis */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="w-full h-full bg-[radial-gradient(circle,_rgba(255,255,255,0.05)_1px,_transparent_1px)] [background-size:20px_20px] opacity-30 animate-pulse" />
+        <div className="w-full h-full bg-[radial-gradient(circle,_rgba(255,255,255,0.05)_1px,_transparent_1px)] [background-size:20px_20px] opacity-20 animate-pulse" />
         {floatingEmojis.map(({ id, emoji, x, y }) => (
           <motion.div
             key={id}
@@ -142,16 +151,11 @@ export default function GetStarted() {
           </button>
           <button
             onClick={() => router.push("/sign-up")}
-            className="border border-white px-6 py-2 rounded-full font-medium hover:bg-white hover:text-black transition-all shadow-lg hover:shadow-white/30"
+            className="border border-white px-6 py-2 rounded-full font-medium hover:bg-white hover:text-black transition-all shadow-lg hover:shadow-white/50"
           >
             Sign Up
           </button>
         </motion.div>
-      </div>
-
-      {/* Ambient glitch/flicker effect */}
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
-        <div className="w-full h-full animate-flicker bg-black/5" />
       </div>
     </div>
   );
