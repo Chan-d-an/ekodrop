@@ -1,6 +1,6 @@
 
 
-import { ThumbsUp, MessageCircle,Settings } from "lucide-react";
+import { ThumbsUp, MessageCircle,Settings ,Plus } from "lucide-react";
 
 import { BottomNav } from '@/components/layout/BottomNav';
 import { getSession } from '@/lib/getSession';
@@ -58,21 +58,34 @@ const posts = [
       
        <main className="p-4 max-w-md mx-auto bg-light dark:bg-dark">
       {/* Header */}
-      <div className="flex justify-between items-center gap-4 mb-4 text-tlight dark:text-tdark">
+      <div className="flex justify-between items-center gap-4 mb-2 text-tlight dark:text-tdark">
         {/*<button className="text-2xl font-medium"><-</button>*/}
-        <h1 className="text-xl font-semibold">@loremkp59</h1>
-        <Link href={'/profile/settings'}
+        <h1 className="text-lg font-semibold">@loremkp59</h1>
+        <div>
+          <div className="flex items-center w-full  ">
+                <div className="text-md text-gray-400 flex items-center w-full gap-3">
+                  <button className=" text-md bg-secondary/10 w-full text-tdark mx-auto rounded-full py-1 px-4 text-center justify-center flex items-center gap-1">
+                  <Plus size={20} className="text-tdark  " />
+                   <span className=""> Follow</span>
+                  </button>
+                  
+                </div>
+                <Link href={'/profile/settings'}
 
-              className="p-2 rounded-full transition-colors"
+              className="px-4 rounded-full  bg-secondar transition-colors"
             >
-              <Settings size={20} className="text-tlight dark:text-tdark" />
+              <Settings size={22} className="text-tdark" />
             </Link>
+          </div>
+
+        </div> 
+        
       </div>
 
       {/* Profile Card */}
       <div className=" text-white  py-6 rounded-2xl mb-6 shadow text-tdark">
-        <div className=" ">
-          <div className="flex  px-2">
+        <div className="px-2 ">
+          <div className="flex  ">
             <div className="w">
               <div className="">
               <Image
@@ -85,7 +98,7 @@ const posts = [
                 </div>
               </div>
             <div className="mx-auto  ml-6 inline-block ">
-              <h2 className=" font-bold  text-xl">John Mobbin</h2>
+              <h2 className=" font-bold  text-lg">John Mobbin</h2>
               
               <div className="flex flex-wrap gap-2 my-2">
                   <p className="px-2 leading-4 p-[1px] text-[10px] tracking-wider bg-secondary/20 rounded-lg">Dancing</p>
@@ -99,7 +112,7 @@ const posts = [
               </div>
             </div>
              </div>
-              <p className="text-xs text-tdark mt-2">Lorem ipsum dolor sit,gu amet consectetur adipisicing elit. Id nihil,gv vero maxime ratione, quaerat voluptas nostrum ea doloribus magnam saepe aliquam sequi numquam eveniet harum nisi dolores rem?</p>
+              <p className="text-sm text-tdark mt-4 px-1">Lorem ipsum dolor sit,gu amet consectetur adipisicing elit. Id nihil,gv vero maxime ratione, quaerat voluptas nostrum ea doloribus magnam saepe aliquam sequi numquam eveniet harum nisi dolores rem?</p>
         
          {/**  <button className="text-sm underline border-[1px] border-green-700">Edit Profile</button>*/}
         </div>
