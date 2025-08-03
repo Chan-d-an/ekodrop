@@ -1,7 +1,7 @@
 
 'use client'
+import React from 'react'
 
-import { useRouter } from 'next/navigation'
 import { ThumbsUp, MessageCircle,Settings ,Plus,ArrowLeft } from "lucide-react";
 
 import { BottomNav } from '@/components/layout/BottomNav';
@@ -12,7 +12,6 @@ import Image from 'next/image';
 
 export default async function ProfilePage() {
   
-      const router = useRouter()
   const session = await getSession();
   const user = session?.user;
 const posts = [
@@ -65,7 +64,7 @@ const posts = [
       <div className="flex justify-between items-center gap-4 pb-2 text-tlight dark:text-tdark">
         {/*<button className="text-2xl font-medium"><-</button>*/}
         <div className='flex gap-2'>
-          <ArrowLeft size={22} onClick={() => router.push('/')} className=''/>
+          <ArrowLeft size={22}  className=''/>
         <h1 className="text-lg leading-5 font-semibold">@loremkp59</h1>
         </div>
         
@@ -92,7 +91,7 @@ const posts = [
 
       {/* Profile Card */}
       <div className=" text-white  py-6 rounded-2xl mb-6 shadow text-tdark">
-        <div className="px-2 ">
+        <div className="-2 ">
           <div className="flex  ">
             <div className="w">
               <div className="">
