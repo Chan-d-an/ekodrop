@@ -1,6 +1,8 @@
 
+'use client'
 
-import { ThumbsUp, MessageCircle,Settings ,Plus } from "lucide-react";
+import { useRouter } from 'next/navigation'
+import { ThumbsUp, MessageCircle,Settings ,Plus,ArrowLeft } from "lucide-react";
 
 import { BottomNav } from '@/components/layout/BottomNav';
 import { getSession } from '@/lib/getSession';
@@ -9,6 +11,8 @@ import Image from 'next/image';
 
 
 export default async function ProfilePage() {
+  
+      const router = useRouter()
   const session = await getSession();
   const user = session?.user;
 const posts = [
@@ -58,9 +62,13 @@ const posts = [
       
        <main className="p-4 max-w-md mx-auto bg-light dark:bg-dark">
       {/* Header */}
-      <div className="flex justify-between items-center gap-4 mb-2 text-tlight dark:text-tdark">
+      <div className="flex justify-between items-center gap-4 pb-2 text-tlight dark:text-tdark">
         {/*<button className="text-2xl font-medium"><-</button>*/}
-        <h1 className="text-lg font-semibold">@loremkp59</h1>
+        <div className='flex gap-2'>
+          <ArrowLeft size={22} onClick={() => router.push('/')} className=''/>
+        <h1 className="text-lg leading-5 font-semibold">@loremkp59</h1>
+        </div>
+        
         <div>
           <div className="flex items-center w-full  ">
                 <div className="text-md text-gray-400 flex items-center w-full gap-3">
@@ -72,7 +80,7 @@ const posts = [
                 </div>
                 <Link href={'/profile/settings'}
 
-              className="px-4 rounded-full  bg-secondar transition-colors"
+              className="pl-2 rounded-full  bg-secondar transition-colors"
             >
               <Settings size={22} className="text-tdark" />
             </Link>
