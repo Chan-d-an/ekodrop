@@ -78,29 +78,21 @@ const posts = [
               <Image
                   src={user?.image ? user.image : '/icons/profile.jpg'}
                   alt="Profile"
-                  className="rounded-full min-h-[100px] min-w-[100px] mx-auto object-cover border-4 border-white shadow-lg"
-                  width={100}
-                  height={100}
+                  className="rounded-full min-h-[80px] min-w-[80px] mx-auto object-cover border-4 border-white shadow-lg"
+                  width={80}
+                  height={80}
                 /> 
                 </div>
               </div>
-            <div className="mx-auto ml-6 inline-block ">
-              <h2 className=" font-bold  text-3xl">John Mobbin</h2>
+            <div className="mx-auto  ml-6 inline-block ">
+              <h2 className=" font-bold  text-xl">John Mobbin</h2>
               
               <div className="flex flex-wrap gap-2 my-2">
-                  <p className="px-3 py-1 text-xs bg-secondary/20 rounded-lg">Dancing</p>
-                  <p className="px-3 py-1 text-xs bg-secondary/20 rounded-lg">Study</p>
-                  <p className="px-3 py-1 text-xs bg-secondary/20 rounded-lg">Study</p>
-                  <p className="px-3 py-1 text-xs bg-secondary/20 rounded-lg">Dancing</p>
-                  <p className="px-3 py-1 text-xs bg-secondary/20 rounded-lg">Dancing</p>
-                  <p className="px-3 py-1 text-xs bg-secondary/20 rounded-lg">Study</p>
-                  <p className="px-3 py-1 text-xs bg-secondary/20 rounded-lg">Study</p>
-                  <p className="px-3 py-1 text-xs bg-secondary/20 rounded-lg">Dancing</p>
-                  <p className="px-3 py-1 text-xs bg-secondary/20 rounded-lg">Dancing</p>
-                  <p className="px-3 py-1 text-xs bg-secondary/20 rounded-lg">Dancing</p>
-                  <p className="px-3 py-1 text-xs bg-secondary/20 rounded-lg">Study</p>
-                  <p className="px-3 py-1 text-xs bg-secondary/20 rounded-lg">Study</p>
-                  <p className="px-3 py-1 text-xs bg-secondary/20 rounded-lg">Dancing</p>
+                  <p className="px-2 leading-4 p-[1px] text-[10px] tracking-wider bg-secondary/20 rounded-lg">Dancing</p>
+                  <p className="px-2 leading-4 p-[1px] text-[10px] tracking-wider bg-secondary/20 rounded-lg">Study</p>
+                  <p className="px-2 leading-4 p-[1px] text-[10px] tracking-wider bg-secondary/20 rounded-lg">Playing</p>
+                  <p className="px-2 leading-4 p-[1px] text-[10px] tracking-wider bg-secondary/20 rounded-lg">Dancing</p>
+                  
                   
                   
                  
