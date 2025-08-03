@@ -99,7 +99,7 @@ const posts = [
               </div>
             </div>
              </div>
-              <p className="text-sm text-tdark mt-2">Lorem ipsum dolor sit,gu amet consectetur adipisicing elit. Id nihil,gv vero maxime ratione, quaerat voluptas nostrum ea doloribus magnam saepe aliquam sequi numquam eveniet harum nisi dolores rem?</p>
+              <p className="text-xs text-tdark mt-2">Lorem ipsum dolor sit,gu amet consectetur adipisicing elit. Id nihil,gv vero maxime ratione, quaerat voluptas nostrum ea doloribus magnam saepe aliquam sequi numquam eveniet harum nisi dolores rem?</p>
         
          {/**  <button className="text-sm underline border-[1px] border-green-700">Edit Profile</button>*/}
         </div>
