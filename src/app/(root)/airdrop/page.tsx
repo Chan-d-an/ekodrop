@@ -35,7 +35,7 @@ export default function AirDropPage() {
           <div
             
           >
-            <div className="w-20 h-20 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="w-20 h-20 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <Zap className="text-primary" size={32} />
             </div>
             <h1 className="text-2xl font-bold text-tdark mb-2">AirDrop</h1>

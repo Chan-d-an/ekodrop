@@ -91,8 +91,8 @@ const posts = [
 
       {/* Profile Card */}
       <div className=" text-white  py-6 rounded-2xl mb-6 shadow text-tdark">
-        <div className="-2 ">
-          <div className="flex  ">
+        <div className="px-2">
+          <div className="flex">
             <div className="w">
               <div className="">
               <Image
