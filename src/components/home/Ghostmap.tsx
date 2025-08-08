@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Circle } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import icon from 'leaflet/dist/images/marker-icon.png';
+import shadow from 'leaflet/dist/images/marker-shadow.png';
 
 type GhostMapProps = {
   lat: number;
@@ -18,6 +20,14 @@ L.Icon.Default.mergeOptions({
   shadowUrl: '/leaflet/marker-shadow.png',
 });
 
+const customIcon = L.icon({
+  iconUrl: icon.src ?? icon,
+  shadowUrl: shadow.src ?? shadow,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
 const GhostMap = ({ lat, lng }: GhostMapProps) => {
   useEffect(() => {
     // Example only: Uncomment if you plan to use geocoder later
@@ -48,7 +58,8 @@ const GhostMap = ({ lat, lng }: GhostMapProps) => {
             attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a>'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Marker position={[lat, lng]} />
+          
+<Marker position={[lat, lng]} icon={customIcon} />
           <Circle
             center={[lat, lng]}
             radius={5000}

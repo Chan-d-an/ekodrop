@@ -1,13 +1,11 @@
+
 "use client";
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { PostCard } from "./PostCard";
-import { Post } from "@/types/types"; // Ensure this type is defined correctly
+import { Post } from "@/types/types";
 import { Infinity } from "lucide-react";
-
-// Mock data
-
 
 const mockPosts: Post[] = [
   {
@@ -166,13 +164,12 @@ const mockPosts: Post[] = [
 
 
 export function HomeFeed() {
-  const [feedType, setFeedType] = useState<"Anonymous" | "Blend" | "Real">("Blend");
+  const [feedType, setFeedType] = useState<"Anonymous" | "Blend">("Blend");
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
     const stored = localStorage.getItem("selectedFeed");
     if (stored === "Anonymous") setFeedType("Anonymous");
-    else if (stored === "Real") setFeedType("Real");
     else setFeedType("Blend");
   }, []);
 
@@ -181,8 +178,6 @@ export function HomeFeed() {
 
     if (feedType === "Anonymous") {
       filtered = mockPosts.filter((post) => post.isAnon);
-    } else if (feedType === "Real") {
-      filtered = mockPosts.filter((post) => !post.isAnon);
     } else {
       filtered = [...mockPosts];
     }
@@ -204,29 +199,29 @@ export function HomeFeed() {
   const handleEcho = (postId: string) => console.log("Echo:", postId);
 
   return (
-    <div className="min-h-screen bg-dark  pb-20">
+    <div className="min-h-screen bg-dark pb-20">
       {/* Feed toggle buttons */}
-      <div className="flex  justify-center mb-2 ">
+      <div className="flex justify-center mb-2">
         <div className="max-w-md px-3 w-full">
-        <div className="flex bg-secondary/10 justify-between p-1 max-w-md rounded-xl   w-full shadow-sm">
-          {["Blend", "Anonmous", "Real"].map((type) => (
-            <button
-              key={type}
-              onClick={() => setFeedType(type as typeof feedType)}
-              className={`px-4 py-1 text-sm font-semibold rounded-full transition flex items-center gap-1 ${
-                feedType === type ? "bg-light text-tlight shadow" : "text-tdark/70"
-              }`}
-            >
-              {type === "Blend" && <Infinity className="w-4 h-4" />}
-              {type}
-            </button>
-          ))}
-        </div>
+          <div className="grid grid-cols-2 gap-4  bg-secondary/10  px-4 py-1 max-w-md rounded-xl w-full shadow-sm">
+            {["Blend", "Anonymous"].map((type) => (
+              <button
+                key={type}
+                onClick={() => setFeedType(type as typeof feedType)}
+                className={`px-4 py-1 text-sm font-semibold rounded-full transition flex justify-center items-center gap-1 ${
+                  feedType === type ? "bg-light text-tlight shadow" : "text-tdark/70"
+                }`}
+              >
+                {type === "Blend" && <Infinity className="w-4 h-4" />}
+                {type}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Posts */}
-      <div className="max-w-md mx-auto  ">
+      <div className="max-w-md mx-auto">
         <AnimatePresence mode="wait">
           {posts.map((post) => (
             <motion.div
