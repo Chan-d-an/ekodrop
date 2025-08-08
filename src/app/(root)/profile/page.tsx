@@ -2,7 +2,7 @@
 'use client'
 import React from 'react'
 
-import { ThumbsUp, MessageCircle,Settings ,Plus,ArrowLeft } from "lucide-react";
+import { Settings ,ArrowLeft } from "lucide-react";
 
 import { BottomNav } from '@/components/layout/BottomNav';
 import { getSession } from '@/lib/getSession';
@@ -216,3 +216,5 @@ const posts = [
     </div>
   );
 }
+
+

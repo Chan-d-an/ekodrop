@@ -380,5 +380,3 @@ const dropdownRef = useRef<HTMLDivElement>(null)
     </div>
   )
 }
-export default PostCard;
-

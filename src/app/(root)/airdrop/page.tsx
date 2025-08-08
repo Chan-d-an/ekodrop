@@ -3,20 +3,21 @@
 import { useState } from 'react';
 import { BottomNav } from '@/components/layout/BottomNav';
 import { motion } from 'framer-motion';
-import { Zap, Users, Wifi, WifiOff, User, Ghost } from 'lucide-react';
+import { Zap,  User, Ghost } from 'lucide-react';
 
 export default function AirDropPage() {
-  const [isScanning, setIsScanning] = useState(false);
   const [showAllAccounts, setShowAllAccounts] = useState(false);
+ {/* const [isScanning, setIsScanning] = useState(false);
+ */}
 
-  const [nearbyUsers, setNearbyUsers] = useState([
+  const [nearbyUsers] = useState([
     { id: 1, name: 'Anonymous', isAnon: true, distance: 12 },
     { id: 2, name: 'Sarah', isAnon: false, distance: 23 },
     { id: 3, name: 'Anonymous', isAnon: true, distance: 35 },
     { id: 4, name: 'Mike', isAnon: false, distance: 42 },
     { id: 5, name: 'John', isAnon: false, distance: 50 }
   ]);
-
+{/*
   const handleScan = () => {
     setIsScanning(true);
     setTimeout(() => {
@@ -26,7 +27,7 @@ export default function AirDropPage() {
         { id: Date.now(), name: 'Anonymous', isAnon: true, distance: Math.floor(Math.random() * 50) + 10 }
       ]);
     }, 3000);
-  };
+  };*/}
 
   const displayedUsers = showAllAccounts ? nearbyUsers : nearbyUsers.slice(0, 3);
 
@@ -95,29 +96,11 @@ export default function AirDropPage() {
           <div className="mb-8">
             <button
               
-              disabled={isScanning}
-              className={`w-full py-4 cursor-not-allowed opacity-70  rounded-full font-medium text-lg mt-2 transition-all ${
-                isScanning
-                  ? 'border border-secondary/10 text-primary cursor-not-allowed'
-                  : 'border border-secondary/10 text-primary text-shadow-xs text-shadow-black'
-              }`}
+              disabled
+              className='w-full py-4 cursor-not-allowed opacity-70  rounded-full font-medium text-lg mt-2 transition-all border border-secondary/10 text-primary text-shadow-xs text-shadow-black' 
+                
             >
-              {isScanning ? (
-                <div className="flex items-center justify-center space-x-2">
-                  <motion.div
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-                  >
-                    <Wifi size={20} />
-                  </motion.div>
-                  <span>Scanning...</span>
-                </div>
-              ) : (
-                <div className="flex items-center justify-center space-x-2">
-                  <Users size={20} />
-                  <span>Find Nearby Users</span>
-                </div>
-              )}
+             
             </button>
           </div>
 
@@ -172,18 +155,7 @@ export default function AirDropPage() {
               )}
             </div>
 
-            {/* Empty State */}
-            {nearbyUsers.length === 0 && !isScanning && (
-              <div className="text-center py-12">
-                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <WifiOff className="text-gray-400" size={24} />
-                </div>
-                <h3 className="text-lg font-medium text-gray-800 mb-2">No users nearby</h3>
-                <p className="text-gray-600 text-sm">
-                  Try scanning again or move to a different location
-                </p>
-              </div>
-            )}
+          
           </div>
         </div>
       </main>
