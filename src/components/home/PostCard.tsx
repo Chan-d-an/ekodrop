@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import GhostMap from './Ghostmap';
 import {
   ArrowUp,
   ArrowDown,
@@ -12,7 +13,8 @@ import {
   MoreVertical,
   Send,
   Bookmark,
-  Flag
+  Flag,
+  MapPinned
 } from 'lucide-react'
 import { Post } from '@/types/types'
 
@@ -32,6 +34,8 @@ export function PostCard({
   const [downvoted, setDownvoted] = useState(false)
   const [showComments, setShowComments] = useState(false)
   const [newComment, setNewComment] = useState("")
+  
+  const [showMap, setShowMap] = useState(false)
   const [showDropdown, setShowDropdown] = useState(false)
 const dropdownRef = useRef<HTMLDivElement>(null)
 
@@ -240,9 +244,32 @@ const dropdownRef = useRef<HTMLDivElement>(null)
         <button>
           <Send size={24} className="text-tdark" />
         </button>
+         <button onClick={() => setShowMap(true)}>
+          <MapPinned size={24} className="text-blue-500" />
+        </button>
       </div>
 
       <p className="mt-2 text-[14px] text-blue-400">#trending #famous #cricket</p>
+
+      {showMap && (
+        <div className="fixed inset-0 z-50 flex justify-center items-end "> 
+          <div className="absolute inset-0 max-w-md mx-auto  " onClick={() => setShowMap(false)} />
+          <motion.div
+            initial={{ y: '100%' }}
+            animate={{ y: 0 }}
+            exit={{ y: '100%' }}
+            transition={{ type: 'spring', stiffness: 80 }}
+            className="relative z-10  max-h-[90vh] bg-dark/90 bg-opacity/10 bottom-0 w-full max-w-md mx-auto overflow-hidden rounded-t-2xl shadow-xl overflow-y-auto"
+          >
+            <div className="w-full flex justify-center py-2  cursor-pointer ">
+              <div className="h-1.5 w-14 rounded-full bg-gray-300" />
+            </div>
+            <GhostMap lat={post.lat} lng={post.lng} />
+
+          </motion.div>
+        </div>
+      )}
+
 
       {/* Comments Section */}
       {showComments && (
@@ -259,7 +286,7 @@ const dropdownRef = useRef<HTMLDivElement>(null)
       animate={{ y: 0 }}
       exit={{ y: '100%' }}
       transition={{ type: 'spring', stiffness: 80 }}
-      className="relative z-10 bg-dark mt-[150px] bottom-0 max-h-[70vh] text-tdark max-w-md w-full mx-auto overflow-y-auto rounded-t-xl"
+      className="relative z-10 bg-dark  mt-[150px] bottom-0 max-h-[70vh] text-tdark max-w-md w-full mx-auto overflow-y-auto rounded-t-xl"
       ref={commentSectionRef}
     >
 
@@ -356,3 +383,5 @@ const dropdownRef = useRef<HTMLDivElement>(null)
     </div>
   )
 }
+export default PostCard;
+
