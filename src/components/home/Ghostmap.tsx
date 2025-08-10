@@ -40,7 +40,7 @@ const GhostMap = ({ lat, lng }: GhostMapProps) => {
   }, []);
 
   return (
-    <div className="w-full h-[90vh] max-w-md mx-auto rounded-t-2xl text-tdark px-4 py-3">
+    <div className="w-full h-[80vh] max-w-md mx-auto rounded-t-2xl text-tdark px-4 py-3">
       <input
         type="text"
         placeholder="Search for a location..."

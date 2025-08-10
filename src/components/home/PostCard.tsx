@@ -261,9 +261,18 @@ const dropdownRef = useRef<HTMLDivElement>(null)
             
             className="relative z-10  max-h-[90vh] bg-dark/90 bg-opacity/10 bottom-0 w-full max-w-md mx-auto overflow-hidden rounded-t-2xl shadow-xl overflow-y-auto"
           >
-            <div className="w-full flex justify-center py-2  cursor-pointer ">
-              <div className="h-1.5 w-14 rounded-full bg-secondary/10" />
-            </div>
+               <motion.div
+  drag="y"
+  dragConstraints={{ top: 0, bottom: 0 }}
+  onDragEnd={(_, info) => {
+    if (info.offset.y > 5) {
+      setShowMap(false)
+    }
+  }}
+  className="w-full flex justify-center py-2 cursor-pointer"
+>
+  <div className="h-1.5 w-14 rounded-full bg-secondary/10" />
+</motion.div>
             <GhostMap lat={post.lat} lng={post.lng} />
 
           </div>

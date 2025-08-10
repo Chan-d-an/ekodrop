@@ -43,7 +43,7 @@ export function Header() {
       {showHeader && (
         <header
 
-          className="fixed top-0 left-0 right-0 bg-light dark:bg-dark backdrop-blur-lg z-50"
+          className="fixed top-0 left-0 right-0 bg-dark backdrop-blur-lg z-50"
         >
           <div className="flex justify-between items-center  px-4 py-3 max-w-md mx-auto relative">
             {/* Left: Logo + Dropdown */}
@@ -70,13 +70,13 @@ export function Header() {
 
               className="p-2 rounded-full  transition-colors"
             >
-              <Bell size={20} className="text-tlight dark:text-tdark" />
+              <Bell size={20} className="text-tdark" />
             </Link>
             <Link href={'/profile/settings'}
 
               className="p-2 rounded-full transition-colors"
             >
-              <Settings size={20} className="text-tlight dark:text-tdark" />
+              <Settings size={20} className="text-tdark" />
             </Link>
           </div>
         </div>
