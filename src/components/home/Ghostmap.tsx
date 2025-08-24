@@ -1,11 +1,29 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Circle } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
-import icon from 'leaflet/dist/images/marker-icon.png';
-import shadow from 'leaflet/dist/images/marker-shadow.png';
+import dynamic from "next/dynamic";
+import { useEffect } from "react";
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
+
+const MapContainer = dynamic(
+  () => import("react-leaflet").then((m) => m.MapContainer),
+  { ssr: false }
+);
+const TileLayer = dynamic(
+  () => import("react-leaflet").then((m) => m.TileLayer),
+  { ssr: false }
+);
+const Marker = dynamic(
+  () => import("react-leaflet").then((m) => m.Marker),
+  { ssr: false }
+);
+const Circle = dynamic(
+  () => import("react-leaflet").then((m) => m.Circle),
+  { ssr: false }
+);
+
+import icon from "leaflet/dist/images/marker-icon.png";
+import shadow from "leaflet/dist/images/marker-shadow.png";
 
 type GhostMapProps = {
   lat: number;
@@ -13,30 +31,25 @@ type GhostMapProps = {
 };
 
 // Fix for missing marker icons in Leaflet
-
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: '/leaflet/marker-icon-2x.png',
-  iconUrl: '/leaflet/marker-icon.png',
-  shadowUrl: '/leaflet/marker-shadow.png',
+  iconRetinaUrl: "/leaflet/marker-icon-2x.png",
+  iconUrl: "/leaflet/marker-icon.png",
+  shadowUrl: "/leaflet/marker-shadow.png",
 });
 
 const customIcon = L.icon({
-  iconUrl: icon.src ?? icon,
-  shadowUrl: shadow.src ?? shadow,
+  iconUrl: icon.src,
+  shadowUrl: shadow.src,
   iconSize: [25, 41],
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
   shadowSize: [41, 41],
 });
-const GhostMap = ({ lat, lng }: GhostMapProps) => {
+
+
+export default function GhostMap({ lat, lng }: GhostMapProps) {
   useEffect(() => {
-    // Example only: Uncomment if you plan to use geocoder later
-    // const loadGeocoder = async () => {
-    //   const leaflet = (await import('leaflet')).default;
-    //   const { Geocoder } = await import('leaflet-control-geocoder');
-    //   leaflet.Control.geocoder().addTo(leafletMap);
-    // };
-    // loadGeocoder();
+    // reserved for client-only logic like geocoder
   }, []);
 
   return (
@@ -52,20 +65,19 @@ const GhostMap = ({ lat, lng }: GhostMapProps) => {
           center={[lat, lng]}
           zoom={13}
           scrollWheelZoom={false}
-          style={{ height: '100%', width: '100%' }}
+          style={{ height: "100%", width: "100%" }}
         >
           <TileLayer
             attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a>'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          
-<Marker position={[lat, lng]} icon={customIcon} />
+          <Marker position={[lat, lng]} icon={customIcon} />
           <Circle
             center={[lat, lng]}
             radius={5000}
             pathOptions={{
-              color: '#00bcd4',
-              fillColor: '#00bcd4',
+              color: "#00bcd4",
+              fillColor: "#00bcd4",
               fillOpacity: 0.2,
             }}
           />
@@ -77,6 +89,4 @@ const GhostMap = ({ lat, lng }: GhostMapProps) => {
       </p>
     </div>
   );
-};
-
-export default GhostMap;
+}

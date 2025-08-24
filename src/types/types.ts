@@ -1,13 +1,3 @@
-export interface User {
-  uid: string;
-  name: string;
-  avatar?: string;
-  bio?: string;
-  tier: 'Free' | 'Plus' | 'Pro' | 'Legend';
-  allowAnonChat: boolean;
-  createdAt: Date;
-}
-
 export interface Post {
   id: string;
   uid: string;

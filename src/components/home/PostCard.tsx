@@ -3,7 +3,6 @@
 import { useEffect, useState, useRef } from "react";
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import GhostMap from './Ghostmap';
 import {
   ArrowUp,
   ArrowDown,
@@ -14,7 +13,6 @@ import {
   Send,
   Bookmark,
   Flag,
-  MapPinned
 } from 'lucide-react'
 import { Post } from '@/types/types'
 
@@ -34,10 +32,8 @@ export function PostCard({
   const [downvoted, setDownvoted] = useState(false)
   const [showComments, setShowComments] = useState(false)
   const [newComment, setNewComment] = useState("")
-  
-  const [showMap, setShowMap] = useState(false)
   const [showDropdown, setShowDropdown] = useState(false)
-const dropdownRef = useRef<HTMLDivElement>(null)
+  const dropdownRef = useRef<HTMLDivElement>(null)
 
   const [postAnon, setPostAnon] = useState(true) // <-- Added
   const [comments, setComments] = useState([
@@ -111,22 +107,22 @@ const dropdownRef = useRef<HTMLDivElement>(null)
       })
     )
   }
- 
+
   useEffect(() => {
-  function handleClickOutside(e: MouseEvent) {
-    if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-      setShowDropdown(false)
+    function handleClickOutside(e: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setShowDropdown(false)
+      }
     }
-  }
 
-  if (showDropdown) {
-    document.addEventListener("mousedown", handleClickOutside)
-  }
+    if (showDropdown) {
+      document.addEventListener("mousedown", handleClickOutside)
+    }
 
-  return () => {
-    document.removeEventListener("mousedown", handleClickOutside)
-  }
-}, [showDropdown])
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [showDropdown])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -176,36 +172,36 @@ const dropdownRef = useRef<HTMLDivElement>(null)
           </div>
         </div>
         <div className="relative">
-  <button onClick={() => setShowDropdown(prev => !prev)} className="mt-2 mr-1">
-    <MoreVertical size={20} className="text-tlight dark:text-tdark" />
-  </button>
+          <button onClick={() => setShowDropdown(prev => !prev)} className="mt-2 mr-1">
+            <MoreVertical size={20} className="text-tlight dark:text-tdark" />
+          </button>
 
-  {showDropdown && (
-    <div
-      ref={dropdownRef}
-      className="absolute right-0 mt-2 w-40 bg-dark text-tdark shadow-lg rounded-lg  z-50 border border-neutral-700"
-    >
-      <button
-        onClick={() => {
-          setShowDropdown(false)
-          alert("Post saved!") // Replace with real logic
-        }}
-        className="w-full px-4 pt-3 pb-2 hover:bg-neutral-800 flex items-center gap-2 text-sm rounded-t-lg"
-      >
-        <Bookmark size={16} /> Save Post
-      </button>
-      <button
-        onClick={() => {
-          setShowDropdown(false)
-          alert("Reported!") // Replace with real logic
-        }}
-        className="w-full px-4 pb-3 pt-2 hover:bg-neutral-800 flex items-center gap-2 text-sm rounded-b-lg text-red-400"
-      >
-        <Flag size={16} /> Report Post
-      </button>
-    </div>
-  )}
-</div>
+          {showDropdown && (
+            <div
+              ref={dropdownRef}
+              className="absolute right-0 mt-2 w-40 bg-dark text-tdark shadow-lg rounded-lg  z-50 border border-neutral-700"
+            >
+              <button
+                onClick={() => {
+                  setShowDropdown(false)
+                  alert("Post saved!") // Replace with real logic
+                }}
+                className="w-full px-4 pt-3 pb-2 hover:bg-neutral-800 flex items-center gap-2 text-sm rounded-t-lg"
+              >
+                <Bookmark size={16} /> Save Post
+              </button>
+              <button
+                onClick={() => {
+                  setShowDropdown(false)
+                  alert("Reported!") // Replace with real logic
+                }}
+                className="w-full px-4 pb-3 pt-2 hover:bg-neutral-800 flex items-center gap-2 text-sm rounded-b-lg text-red-400"
+              >
+                <Flag size={16} /> Report Post
+              </button>
+            </div>
+          )}
+        </div>
 
       </div>
 
@@ -242,150 +238,140 @@ const dropdownRef = useRef<HTMLDivElement>(null)
           </motion.button>
         </div>
         <div className="flex gap-4">
-        
-         <button onClick={() => setShowMap(true)}>
-          <MapPinned size={24} className="text-tdark" />
-        </button>
-        <button>
-          <Send size={24} className="text-tdark" />
-        </button>
+          <button
+            onClick={() => {
+              if (navigator.share) {
+                const shareData = {
+                  title: "Check this out!",
+                  text: "Here’s something interesting 🚀",
+                  url: window.location.href,
+                };
+
+                if (navigator.canShare && navigator.canShare(shareData)) {
+                  navigator.share(shareData).catch((err) =>
+                    console.error("Share failed:", err)
+                  );
+                } else {
+                  console.warn("Sharing not supported");
+                }
+              } else {
+                console.warn("Web Share API not available");
+              }
+            }}
+          >
+            <Send size={24} className="text-tdark" />
+          </button>
+
         </div>
       </div>
 
       <p className="mt-2 text-[14px] text-blue-400">#trending #famous #cricket</p>
-
-      {showMap && (
-        <div className="fixed inset-0 z-50 flex justify-center items-end "> 
-          <div className="absolute inset-0 max-w-md mx-auto  " onClick={() => setShowMap(false)} />
+      {/* Comments Section */}
+      {showComments && (
+        <div className="fixed inset-0 z-50  flex justify-center items-end ">
+          {/* BACKDROP */}
           <div
-            
-            className="relative z-10  max-h-[90vh] bg-dark/90 bg-opacity/10 bottom-0 w-full max-w-md mx-auto overflow-hidden rounded-t-2xl shadow-xl overflow-y-auto"
-          >
-               <motion.div
-  drag="y"
-  dragConstraints={{ top: 0, bottom: 0 }}
-  onDragEnd={(_, info) => {
-    if (info.offset.y > 5) {
-      setShowMap(false)
-    }
-  }}
-  className="w-full flex justify-center py-2 cursor-pointer"
->
-  <div className="h-1.5 w-14 rounded-full bg-secondary/10" />
-</motion.div>
-            <GhostMap lat={post.lat} lng={post.lng} />
+            className="absolute inset-0 bg-transparent bg-opacity-50"
+            onClick={() => setShowComments(false)}
+          />
 
+          {/* COMMENT PANEL */}
+          <div
+
+            className="relative z-10 bg-dark  mt-[150px] bottom-0 max-h-[70vh] text-tdark max-w-md w-full mx-auto overflow-y-auto rounded-t-xl"
+            ref={commentSectionRef}
+          >
+
+
+            <motion.div
+              drag="y"
+              dragConstraints={{ top: 0, bottom: 0 }}
+              onDragEnd={(_, info) => {
+                if (info.offset.y > 5) {
+                  setShowComments(false)
+                }
+              }}
+              className="w-full flex justify-center py-2 cursor-pointer"
+            >
+              <div className="h-1.5 w-14 rounded-full bg-secondary/10" />
+            </motion.div>
+
+            <div className="px-4 pb-82 pt-2 space-y-4">
+              <h3 className="text-lg font-semibold mb-2">Comments</h3>
+              {comments.map((comment, index) => (
+                <div key={index} className="flex items-start gap-3 bg-dark p-3 rounded-lg text-tdark">
+                  <div className="shrink-0">
+                    {comment.isAnonymous ? (
+                      <Ghost className="w-6 h-6 mt-1 text-gray-400" />
+                    ) : (
+                      <Image
+                        src={comment.userImage}
+                        alt="Profile"
+                        className="w-6 h-6 mt-1 rounded-full object-cover"
+                        width={24}
+                        height={24}
+                      />
+                    )}
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex justify-between mb-1">
+                      <span className="text-sm font-semibold text-tdark">
+                        {comment.isAnonymous ? "Anonymous" : comment.username}
+                      </span>
+                      <span className="text-xs text-tdark/70">{comment.time}</span>
+                    </div>
+                    <p className="text-sm mb-2 text-tdark">{comment.text}</p>
+                    <div className="flex gap-4 text-xs text-tdark/30">
+                      <button
+                        onClick={() => toggleCommentLike(index)}
+                        className={`flex items-center gap-1 transition-colors ${comment.liked ? "text-primary" : "hover:text-primary"}`}
+                      >
+                        <Heart className={`w-4 h-4 ${comment.liked ? "fill-primary" : ""}`} />
+                        {comment.likesCount}
+                      </button>
+                      {/* <button className="flex items-center gap-1 ">
+                      <MessageCircle className="w-4 h-4" /> Reply
+                    </button>*/}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Input Area with Anon Toggle */}
+            <div className="fixed bottom-0 w-full mb-[55px] max-w-md bg-dark border-t border-secondary/10 p-3">
+              <div className="flex items-center justify-between mb-2 text-sm text-tdark">
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={postAnon}
+                    onChange={() => setPostAnon(prev => !prev)}
+                    className="accent-primary"
+                  />
+                  Post as Anonymous
+                </label>
+              </div>
+              <div className="flex gap-2 items-center">
+                <input
+                  type="text"
+                  value={newComment}
+                  onChange={(e) => setNewComment(e.target.value)}
+                  placeholder="Write a comment..."
+                  className="flex-1 p-2 rounded bg-secondary/10 text-tdark focus:outline-none focus:ring-1 focus:ring-primary"
+                />
+                <button
+                  onClick={handlePostComment}
+                  className="bg-primary text-shadow-black text-shadow-xs  text-tdark px-4 py-2 rounded "
+                >
+                  Drop
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}
 
 
-      {/* Comments Section */}
-      {showComments && (
-  <div className="fixed inset-0 z-50  flex justify-center items-end ">
-    {/* BACKDROP */}
-    <div
-      className="absolute inset-0 bg-transparent bg-opacity-50"
-      onClick={() => setShowComments(false)}
-    />
-
-    {/* COMMENT PANEL */}
-    <div
-      
-      className="relative z-10 bg-dark  mt-[150px] bottom-0 max-h-[70vh] text-tdark max-w-md w-full mx-auto overflow-y-auto rounded-t-xl"
-      ref={commentSectionRef}
-    >
-
-          
-        <motion.div
-  drag="y"
-  dragConstraints={{ top: 0, bottom: 0 }}
-  onDragEnd={(_, info) => {
-    if (info.offset.y > 5) {
-      setShowComments(false)
-    }
-  }}
-  className="w-full flex justify-center py-2 cursor-pointer"
->
-  <div className="h-1.5 w-14 rounded-full bg-secondary/10" />
-</motion.div>
-
-          <div className="px-4 pb-82 pt-2 space-y-4">
-            <h3 className="text-lg font-semibold mb-2">Comments</h3>
-            {comments.map((comment, index) => (
-              <div key={index} className="flex items-start gap-3 bg-dark p-3 rounded-lg text-tdark">
-                <div className="shrink-0">
-                  {comment.isAnonymous ? (
-                    <Ghost className="w-6 h-6 mt-1 text-gray-400" />
-                  ) : (
-                    <Image
-                      src={comment.userImage}
-                      alt="Profile"
-                      className="w-6 h-6 mt-1 rounded-full object-cover"
-                      width={24}
-                      height={24}
-                    />
-                  )}
-                </div>
-                <div className="flex-1">
-                  <div className="flex justify-between mb-1">
-                    <span className="text-sm font-semibold text-tdark">
-                      {comment.isAnonymous ? "Anonymous" : comment.username}
-                    </span>
-                    <span className="text-xs text-tdark/70">{comment.time}</span>
-                  </div>
-                  <p className="text-sm mb-2 text-tdark">{comment.text}</p>
-                  <div className="flex gap-4 text-xs text-tdark/30">
-                    <button
-                      onClick={() => toggleCommentLike(index)}
-                      className={`flex items-center gap-1 transition-colors ${comment.liked ? "text-primary" : "hover:text-primary"}`}
-                    >
-                      <Heart className={`w-4 h-4 ${comment.liked ? "fill-primary" : ""}`} />
-                      {comment.likesCount}
-                    </button>
-                   {/* <button className="flex items-center gap-1 ">
-                      <MessageCircle className="w-4 h-4" /> Reply
-                    </button>*/}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Input Area with Anon Toggle */}
-          <div className="fixed bottom-0 w-full mb-[55px] max-w-md bg-dark border-t border-secondary/10 p-3">
-            <div className="flex items-center justify-between mb-2 text-sm text-tdark">
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={postAnon}
-                  onChange={() => setPostAnon(prev => !prev)}
-                  className="accent-primary"
-                />
-                Post as Anonymous
-              </label>
-            </div>
-            <div className="flex gap-2 items-center">
-              <input
-                type="text"
-                value={newComment}
-                onChange={(e) => setNewComment(e.target.value)}
-                placeholder="Write a comment..."
-                className="flex-1 p-2 rounded bg-secondary/10 text-tdark focus:outline-none focus:ring-1 focus:ring-primary"
-              />
-              <button
-                onClick={handlePostComment}
-                className="bg-primary text-shadow-black text-shadow-xs  text-tdark px-4 py-2 rounded "
-              >
-                Drop
-              </button>
-            </div>
-          </div>
-             </div>
-    </div>
-)}
-
-      
     </div>
   )
 }

@@ -16,7 +16,7 @@ export default async function Layout({
 }>) {
   const session = await getSession();
   const user = session?.user;
-  if (!user) return redirect("/get-start");
+  if (!user) return redirect("/sign-in");
   return (
     <div className={` min-h-screen bg-gradient-to-br from-[#F5FAFF] to-[#E8F4FD]`}>
     
