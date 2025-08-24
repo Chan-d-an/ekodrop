@@ -86,7 +86,7 @@ export  function NewPost() {
               maxLength={220}
             />
             <div className="text-xs text-tdark text-right mt-1">
-              {caption.length}/220
+              {caption.length}/2200
             </div>
           </div>
 

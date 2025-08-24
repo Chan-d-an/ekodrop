@@ -199,9 +199,9 @@ export function HomeFeed() {
   const handleEcho = (postId: string) => console.log("Echo:", postId);
 
   return (
-    <div className="min-h-screen bg-dark pb-20">
+    <div className="min-h-screen  bg-black pt-20">
       {/* Feed toggle buttons */}
-      <div className="flex justify-center mb-2">
+      <div className="flex justify-center mb-2 sticky top-0">
         <div className="max-w-md px-3 w-full">
           <div className="grid grid-cols-2 gap-4  bg-secondary/10  px-4 py-1 max-w-md rounded-xl w-full shadow-sm">
             {["Blend", "Anonymous"].map((type) => (

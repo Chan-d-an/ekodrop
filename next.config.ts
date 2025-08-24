@@ -35,16 +35,6 @@ const nextConfig = {
         hostname: 'i.pravatar.cc',
       },
     ],
-    domains: [
-      'images.pexels.com',
-      'images.unsplash.com',
-      'lh3.googleusercontent.com',
-      'placehold.net',
-      'placehold.co',
-      'cdn.pixabay.com',
-      'via.placeholder.com',
-      'i.pravatar.cc'
-    ],
   },
 };
 
